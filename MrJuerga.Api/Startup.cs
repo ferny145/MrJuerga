@@ -36,11 +36,14 @@ namespace MrJuerga.Api
             services.AddDbContext<ApplicationDbContext>(options =>            
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddTransient<IPacienteRepository, PacienteRepository>();
-            services.AddTransient<IPacienteService, PacienteService> ();
-
             services.AddTransient<IProductoRepository, ProductoRepository>();
             services.AddTransient<IProductoService, ProductoService> ();
+
+            services.AddTransient<IUsuarioRepository, UsuarioRepository>();
+            services.AddTransient<IUsuarioService, UsuarioService> ();
+
+            services.AddTransient<IPaqueteRepository, PaqueteRepository>();
+            services.AddTransient<IPaqueteService, PaqueteService> ();
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);

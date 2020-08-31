@@ -5,21 +5,20 @@ using MrJuerga.Repository.dbcontext;
 
 namespace MrJuerga.Repository.implementation
 {
-    public class PacienteRepository : IPacienteRepository
+    public class PaqueteRepository: IPaqueteRepository
     {
-
         private ApplicationDbContext context;
 
-        public PacienteRepository(ApplicationDbContext context)
+        public PaqueteRepository(ApplicationDbContext context)
         {
             this.context = context;
         }
-        public Paciente Get(int id)
+        public Paquete Get(int id)
         {
-            var result = new Paciente();
+            var result = new Paquete();
             try
             {
-                result = context.Pacientes.Single(x => x.Id == id);
+                result = context.Paquetes.Single(x => x.Id == id);
             }
 
             catch (System.Exception)
@@ -30,13 +29,13 @@ namespace MrJuerga.Repository.implementation
             return result;
         }
 
-        public IEnumerable<Paciente> GetAll()
+        public IEnumerable<Paquete> GetAll()
         {
 
-            var result = new List<Paciente>();
+            var result = new List<Paquete>();
             try
             {
-                result = context.Pacientes.ToList();
+                result = context.Paquetes.ToList();
             }
 
             catch (System.Exception)
@@ -47,7 +46,7 @@ namespace MrJuerga.Repository.implementation
             return result;
         }
 
-        public bool Save(Paciente entity)
+        public bool Save(Paquete entity)
         {
             try
             {
@@ -62,27 +61,27 @@ namespace MrJuerga.Repository.implementation
             return true;
         }
 
-        public bool Update(Paciente entity)
+        public bool Update(Paquete entity)
         {
             try
             {
-                 var pacienteOrigina = context.Pacientes.Single(
-                     x => x.Id == entity.Id
-                 );
+                var paqueteoriginal = context.Paquetes.Single(
+                    x => x.Id == entity.Id
+                );
 
-                 pacienteOrigina.Id=entity.Id;
-                 pacienteOrigina.Nombres=entity.Nombres;
-                 pacienteOrigina.Apellidos=entity.Apellidos;
-                 pacienteOrigina.Dni=entity.Dni;
-                 pacienteOrigina.Direccion=entity.Direccion;
-                 pacienteOrigina.Telefono=entity.Telefono;
-
-                 context.Update(pacienteOrigina);
-                 context.SaveChanges();
+                paqueteoriginal.Id = entity.Id;
+                paqueteoriginal.Nombre = entity.Nombre;
+                paqueteoriginal.Descripcion = entity.Descripcion;
+                paqueteoriginal.Precio = entity.Precio;
+                paqueteoriginal.Estado = entity.Estado;
+                paqueteoriginal.Stock = entity.Stock;
+              
+                context.Update(paqueteoriginal);
+                context.SaveChanges();
             }
             catch (System.Exception)
             {
-                
+
                 return false;
             }
             return true;
@@ -92,6 +91,5 @@ namespace MrJuerga.Repository.implementation
         {
             throw new System.NotImplementedException();
         }
-
     }
 }

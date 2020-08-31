@@ -2,7 +2,7 @@ using MrJuerga.Entity;
 
 namespace MrJuerga.Repository
 {
-    public interface IPacienteRepository: IRepository<Paciente>
+    public interface IPaqueteRepository: IRepository<Paquete>
     {
          
     }

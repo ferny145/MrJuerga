@@ -5,20 +5,20 @@ using MrJuerga.Repository.dbcontext;
 
 namespace MrJuerga.Repository.implementation
 {
-    public class ProductoRepository : IProductoRepository
+    public class UsuarioRepository : IUsuarioRepository
     {
         private ApplicationDbContext context;
 
-        public ProductoRepository(ApplicationDbContext context)
+        public UsuarioRepository(ApplicationDbContext context)
         {
             this.context = context;
         }
-        public Producto Get(int id)
+        public Usuario Get(int id)
         {
-            var result = new Producto();
+            var result = new Usuario();
             try
             {
-                result = context.Productos.Single(x => x.Id == id);
+                result = context.Usuarios.Single(x => x.Id == id);
             }
 
             catch (System.Exception)
@@ -29,13 +29,13 @@ namespace MrJuerga.Repository.implementation
             return result;
         }
 
-        public IEnumerable<Producto> GetAll()
+        public IEnumerable<Usuario> GetAll()
         {
 
-            var result = new List<Producto>();
+            var result = new List<Usuario>();
             try
             {
-                result = context.Productos.ToList();
+                result = context.Usuarios.ToList();
             }
 
             catch (System.Exception)
@@ -46,7 +46,7 @@ namespace MrJuerga.Repository.implementation
             return result;
         }
 
-        public bool Save(Producto entity)
+        public bool Save(Usuario entity)
         {
             try
             {
@@ -61,23 +61,27 @@ namespace MrJuerga.Repository.implementation
             return true;
         }
 
-        public bool Update(Producto entity)
+        public bool Update(Usuario entity)
         {
             try
             {
-                var productoriginal = context.Productos.Single(
+                var usuariooriginal = context.Usuarios.Single(
                     x => x.Id == entity.Id
                 );
 
-                productoriginal.Id = entity.Id;
-                productoriginal.Nombre = entity.Nombre;
-                productoriginal.Descripcion = entity.Descripcion;
-                productoriginal.Precio = entity.Precio;
-                productoriginal.Categoria = entity.Categoria;
-                productoriginal.Estado = entity.Estado;
-                productoriginal.Stock = entity.Stock;
+                usuariooriginal.Id = entity.Id;
+                usuariooriginal.Nombre = entity.Nombre;
+                usuariooriginal.Apellido = entity.Apellido;
+                usuariooriginal.Correo = entity.Correo;
+                usuariooriginal.Telefono = entity.Telefono;
+                usuariooriginal.FechaNacimiento = entity.FechaNacimiento;                
+                usuariooriginal.Password = entity.Password;
+                usuariooriginal.Rol = entity.Rol;
+                usuariooriginal.Dni = entity.Dni;
+                usuariooriginal.Estado = entity.Estado;
 
-                context.Update(productoriginal);
+
+                context.Update(usuariooriginal);
                 context.SaveChanges();
             }
             catch (System.Exception)

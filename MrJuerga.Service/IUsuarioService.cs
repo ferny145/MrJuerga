@@ -2,8 +2,8 @@ using MrJuerga.Entity;
 
 namespace MrJuerga.Service
 {
-
-    public interface IPacienteService : IService<Paciente>
+    public interface IUsuarioService : IService<Usuario>
     {
+        
     }
 }

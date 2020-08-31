@@ -4,39 +4,39 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MrJuerga.Api.Controllers
 {
+
     [Route("api/[controller]")]
     [ApiController]
-    public class PacienteController : ControllerBase
+    public class PaqueteController: ControllerBase
     {
+        private IPaqueteService paqueteService;
 
-        private IPacienteService pacienteService;
-
-        public PacienteController(IPacienteService pacienteService)
+        public PaqueteController(IPaqueteService paqueteService)
         {
-            this.pacienteService = pacienteService;
+            this.paqueteService = paqueteService;
         }
 
         [HttpGet]
         public ActionResult Get()
         {
             return Ok(
-                pacienteService.GetAll()
+                paqueteService.GetAll()
             );
         }
 
         [HttpPost]
-        public ActionResult Post([FromBody] Paciente paciente)
+        public ActionResult Post([FromBody] Paquete paquete)
         {
             return Ok(
-                pacienteService.Save(paciente)
+                paqueteService.Save(paquete)
             );
         }
 
         [HttpPut]
-        public ActionResult Put([FromBody] Paciente paciente)
+        public ActionResult Put([FromBody] Paquete paquete)
         {
             return Ok(
-                pacienteService.Update(paciente)
+                paqueteService.Update(paquete)
             );
         }
 
@@ -44,9 +44,8 @@ namespace MrJuerga.Api.Controllers
         public ActionResult Delete(int id)
         {
             return Ok(
-                pacienteService.Delete(id)
+                paqueteService.Delete(id)
             );
         }
-
     }
 }

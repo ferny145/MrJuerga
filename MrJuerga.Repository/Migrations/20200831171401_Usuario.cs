@@ -3,9 +3,15 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MrJuerga.Repository.Migrations
 {
-    public partial class init : Migration
+    public partial class Usuario : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.DropTable(
+                name: "Pacientes");
+        }
+
+        protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
                 name: "Pacientes",
@@ -13,22 +19,16 @@ namespace MrJuerga.Repository.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Nombres = table.Column<string>(nullable: false),
                     Apellidos = table.Column<string>(nullable: false),
-                    Dni = table.Column<string>(nullable: true),
                     Direccion = table.Column<string>(nullable: true),
+                    Dni = table.Column<string>(nullable: true),
+                    Nombres = table.Column<string>(nullable: false),
                     Telefono = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Pacientes", x => x.Id);
                 });
-        }
-
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.DropTable(
-                name: "Pacientes");
         }
     }
 }
