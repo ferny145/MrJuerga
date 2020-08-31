@@ -1,0 +1,12 @@
+C:\Users\foi12\Music\MrJuerga\MrJuerga.Repository\bin\Debug\netstandard2.0\MrJuerga.Repository.deps.json
+C:\Users\foi12\Music\MrJuerga\MrJuerga.Repository\bin\Debug\netstandard2.0\MrJuerga.Repository.dll
+C:\Users\foi12\Music\MrJuerga\MrJuerga.Repository\bin\Debug\netstandard2.0\MrJuerga.Repository.pdb
+C:\Users\foi12\Music\MrJuerga\MrJuerga.Repository\bin\Debug\netstandard2.0\MrJuerga.Entity.dll
+C:\Users\foi12\Music\MrJuerga\MrJuerga.Repository\bin\Debug\netstandard2.0\MrJuerga.Entity.pdb
+C:\Users\foi12\Music\MrJuerga\MrJuerga.Repository\obj\Debug\netstandard2.0\MrJuerga.Repository.csprojAssemblyReference.cache
+C:\Users\foi12\Music\MrJuerga\MrJuerga.Repository\obj\Debug\netstandard2.0\MrJuerga.Repository.csproj.CoreCompileInputs.cache
+C:\Users\foi12\Music\MrJuerga\MrJuerga.Repository\obj\Debug\netstandard2.0\MrJuerga.Repository.AssemblyInfoInputs.cache
+C:\Users\foi12\Music\MrJuerga\MrJuerga.Repository\obj\Debug\netstandard2.0\MrJuerga.Repository.AssemblyInfo.cs
+C:\Users\foi12\Music\MrJuerga\MrJuerga.Repository\obj\Debug\netstandard2.0\MrJuerga.Repository.csproj.CopyComplete
+C:\Users\foi12\Music\MrJuerga\MrJuerga.Repository\obj\Debug\netstandard2.0\MrJuerga.Repository.dll
+C:\Users\foi12\Music\MrJuerga\MrJuerga.Repository\obj\Debug\netstandard2.0\MrJuerga.Repository.pdb

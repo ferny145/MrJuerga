@@ -1,0 +1,9 @@
+C:\Users\foi12\Music\MrJuerga\MrJuerga.Entity\bin\Debug\netstandard2.0\MrJuerga.Entity.deps.json
+C:\Users\foi12\Music\MrJuerga\MrJuerga.Entity\bin\Debug\netstandard2.0\MrJuerga.Entity.dll
+C:\Users\foi12\Music\MrJuerga\MrJuerga.Entity\bin\Debug\netstandard2.0\MrJuerga.Entity.pdb
+C:\Users\foi12\Music\MrJuerga\MrJuerga.Entity\obj\Debug\netstandard2.0\MrJuerga.Entity.csprojAssemblyReference.cache
+C:\Users\foi12\Music\MrJuerga\MrJuerga.Entity\obj\Debug\netstandard2.0\MrJuerga.Entity.csproj.CoreCompileInputs.cache
+C:\Users\foi12\Music\MrJuerga\MrJuerga.Entity\obj\Debug\netstandard2.0\MrJuerga.Entity.AssemblyInfoInputs.cache
+C:\Users\foi12\Music\MrJuerga\MrJuerga.Entity\obj\Debug\netstandard2.0\MrJuerga.Entity.AssemblyInfo.cs
+C:\Users\foi12\Music\MrJuerga\MrJuerga.Entity\obj\Debug\netstandard2.0\MrJuerga.Entity.dll
+C:\Users\foi12\Music\MrJuerga\MrJuerga.Entity\obj\Debug\netstandard2.0\MrJuerga.Entity.pdb
