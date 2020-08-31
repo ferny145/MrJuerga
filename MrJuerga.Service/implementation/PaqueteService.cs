@@ -6,7 +6,7 @@ namespace MrJuerga.Service.implementation
 {
     public class PaqueteService: IPaqueteService
     {
-         private IPaqueteRepository paqueteRepository;
+        private IPaqueteRepository paqueteRepository;
         public PaqueteService(IPaqueteRepository paqueteRepository)
         {
             this.paqueteRepository=paqueteRepository;

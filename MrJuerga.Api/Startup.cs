@@ -41,6 +41,9 @@ namespace MrJuerga.Api
 
             services.AddTransient<IUsuarioRepository, UsuarioRepository>();
             services.AddTransient<IUsuarioService, UsuarioService> ();
+            
+            services.AddTransient<IBoletaRepository, BoletaRepository>();
+            services.AddTransient<IBoletaService, BoletaService> ();
 
             services.AddTransient<IPaqueteRepository, PaqueteRepository>();
             services.AddTransient<IPaqueteService, PaqueteService> ();
