@@ -61,12 +61,38 @@ namespace MrJuerga.Repository.implementation
         {
             try
             {
-                context.Add(entity);
+                //Objecto boleta
+                Boleta boleta = new Boleta
+                {
+                    UsuarioId = entity.UsuarioId,
+                    Fecha = entity.Fecha,
+                    Direccion = entity.Direccion,
+                    Total = 0
+                };
+
+                context.Boletas.Add(boleta);
+                context.SaveChanges ();
+                var BoletaId = boleta.Id;
+
+                //Objeto DetalleOrden
+                foreach (var item in entity.DetalleBoleta)
+                {
+                    DetalleBoleta detalle = new DetalleBoleta
+                    {
+                        ProductoId = item.ProductoId,
+                        BoletaId = BoletaId,
+                        Cantidad = item.Cantidad,
+                        Subtotal = item.Cantidad * item.Producto.Precio,
+                        PaqueteId = item.PaqueteId
+                    };
+                    boleta.Total += item.Subtotal;
+                    context.DetalleBoletas.Add(detalle);
+                }
+                context.Boletas.Add(boleta);
                 context.SaveChanges();
             }
-            catch (System.Exception)
+            catch (System.Exception ex)
             {
-
                 return false;
             }
             return true;

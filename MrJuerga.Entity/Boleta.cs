@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 
 
 namespace MrJuerga.Entity
@@ -13,5 +14,6 @@ namespace MrJuerga.Entity
         public DateTime Fecha { get; set; }
         public string Direccion { get; set; }
         public float Total { get; set; }
+        public IEnumerable<DetalleBoleta> DetalleBoleta { get; set; }
     }
 }
