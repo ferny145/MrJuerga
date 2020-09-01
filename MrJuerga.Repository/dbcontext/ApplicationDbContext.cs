@@ -11,6 +11,8 @@ namespace MrJuerga.Repository.dbcontext
         public DbSet<Paquete> Paquetes { get; set; }
 
         public DbSet<Boleta> Boletas {get;set;}
+
+        public DbSet<ProductoPaquete> ProductoPaquetes {get;set;}
         public ApplicationDbContext (DbContextOptions<ApplicationDbContext> options) : base (options) {
 
         }

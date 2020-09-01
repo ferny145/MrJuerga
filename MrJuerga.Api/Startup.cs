@@ -48,6 +48,9 @@ namespace MrJuerga.Api
             services.AddTransient<IPaqueteRepository, PaqueteRepository>();
             services.AddTransient<IPaqueteService, PaqueteService> ();
 
+             services.AddTransient<IProductoPaqueteRepository,ProductoPaqueteRepository>();
+            services.AddTransient<IProductoPaqueteService, ProductoPaqueteService> ();
+
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 

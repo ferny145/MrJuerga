@@ -39,7 +39,7 @@ namespace MrJuerga.Api.Controllers
             );
         }
 
-        [HttpDelete("{id}")]
+        [HttpPut("{id}")]
         public ActionResult Delete(int id)
         {
             return Ok(

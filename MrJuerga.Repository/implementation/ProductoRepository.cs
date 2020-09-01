@@ -90,7 +90,21 @@ namespace MrJuerga.Repository.implementation
 
         public bool Delete(int id)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                var productoriginal = context.Productos.Single(
+                         x => x.Id == id
+                     );
+                productoriginal.Estado = "Inactivo";
+                context.Update(productoriginal);
+                context.SaveChanges();
+            }
+            catch (System.Exception)
+            {
+
+                return false;
+            }
+            return true;
         }
     }
 }

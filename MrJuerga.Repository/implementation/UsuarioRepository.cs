@@ -94,7 +94,21 @@ namespace MrJuerga.Repository.implementation
 
         public bool Delete(int id)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                var usuariooriginal = context.Usuarios.Single(
+                         x => x.Id == id
+                     );
+                usuariooriginal.Estado = "Inactivo";
+                context.Update(usuariooriginal);
+                context.SaveChanges();
+            }
+            catch (System.Exception)
+            {
+
+                return false;
+            }
+            return true;
         }
     }
 }
