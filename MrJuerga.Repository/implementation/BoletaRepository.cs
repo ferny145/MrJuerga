@@ -3,6 +3,7 @@ using System.Linq;
 using MrJuerga.Entity;
 using MrJuerga.Repository.dbcontext;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace MrJuerga.Repository.implementation
 {
@@ -44,7 +45,8 @@ namespace MrJuerga.Repository.implementation
                     UsuarioId = c.UsuarioId,
                     Fecha = c.Fecha,
                     Direccion = c.Direccion,
-                    Total = c.Total
+                    Total = c.Total,
+                    DetalleBoleta = c.DetalleBoleta
                 });
 
             }
@@ -71,7 +73,7 @@ namespace MrJuerga.Repository.implementation
                 };
 
                 context.Boletas.Add(boleta);
-                context.SaveChanges ();
+                context.SaveChanges();
                 var BoletaId = boleta.Id;
 
                 //Objeto DetalleOrden
@@ -81,19 +83,28 @@ namespace MrJuerga.Repository.implementation
                     {
                         ProductoId = item.ProductoId,
                         BoletaId = BoletaId,
-                        Cantidad = item.Cantidad,
-                        Subtotal = item.Cantidad * item.Producto.Precio,
+                        CantidadProducto = item.CantidadProducto,
+                        CantidadPaquete = item.CantidadPaquete,
+                        Subtotal = 0,
                         PaqueteId = item.PaqueteId
-                    };
-                    boleta.Total += item.Subtotal;
+                    };         
+                    var result = new Producto();           
+                    result = context.Productos.Single(x => x.Id == detalle.ProductoId);
+                    var result2 = new Paquete();
+                    result2 = context.Paquetes.Single(x => x.Id == detalle.PaqueteId);                     
+                    detalle.Subtotal = (result.Precio * detalle.CantidadProducto + result2.Precio * detalle.CantidadPaquete);
+                    var result3 = new Boleta();           
+                    result3 = context.Boletas.Single(x => x.Id == boleta.Id);
+                    boleta.Total = result3.Total+ detalle.Subtotal;
+                    context.Boletas.Update(boleta);
                     context.DetalleBoletas.Add(detalle);
-                }
-                context.Boletas.Add(boleta);
+                    
+                }                
                 context.SaveChanges();
             }
             catch (System.Exception ex)
             {
-                return false;
+                Console.WriteLine(ex);
             }
             return true;
         }

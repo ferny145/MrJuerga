@@ -46,5 +46,13 @@ namespace MrJuerga.Api.Controllers
                 productoService.Delete(id)
             );
         }
+
+         [HttpGet("{id}")]
+        public ActionResult Get(int id)
+        {
+            return Ok(
+                productoService.Get(id)
+            );
+        }
     }
 }
