@@ -47,7 +47,7 @@ namespace MrJuerga.Api.Controllers
             );
         }
 
-         [HttpGet("{id}")]
+        [HttpGet("{id}")]
         public ActionResult Get(int id)
         {
             return Ok(

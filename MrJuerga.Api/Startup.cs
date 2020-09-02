@@ -43,13 +43,7 @@ namespace MrJuerga.Api
             services.AddTransient<IUsuarioService, UsuarioService> ();
             
             services.AddTransient<IBoletaRepository, BoletaRepository>();
-            services.AddTransient<IBoletaService, BoletaService> ();
-
-            services.AddTransient<IPaqueteRepository, PaqueteRepository>();
-            services.AddTransient<IPaqueteService, PaqueteService> ();
-
-             services.AddTransient<IProductoPaqueteRepository,ProductoPaqueteRepository>();
-            services.AddTransient<IProductoPaqueteService, ProductoPaqueteService> ();
+            services.AddTransient<IBoletaService, BoletaService> ();           
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);

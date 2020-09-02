@@ -1,3 +1,7 @@
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
+
 namespace MrJuerga.Entity
 {
     public class DetalleBoleta
@@ -6,11 +10,9 @@ namespace MrJuerga.Entity
         public int ProductoId { get; set; }
         public Producto Producto { get; set; }
         public int BoletaId { get; set; }
-        public Boleta Boleta { get; set; }
-        public int CantidadProducto { get; set; }
-        public int CantidadPaquete { get; set; }
-        public float Subtotal { get; set; }
-        public int PaqueteId { get; set; }
-        public Paquete Paquete { get; set; }
+        public Boleta Boleta{get;set;}
+
+        public int Cantidad {get;set;}     
+        public float Subtotal { get; set; }       
     }
 }

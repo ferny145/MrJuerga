@@ -20,8 +20,8 @@ namespace MrJuerga.Repository.implementation
             var result = new Boleta();
             try
             {
-                result = context.Boletas.Single(x => x.Id == id);
-
+                result = context.Boletas.Include(o => o.DetalleBoleta).Single(u => u.Id == id); //.Single(x => x.Id == id).de //.Include(o => o.DetalleBoleta).ToList();
+                //result = context.Boletas.Include(c => c.Usuario).Include(d => d.DetalleBoleta).ToList();              
             }
 
             catch (System.Exception)
@@ -34,29 +34,20 @@ namespace MrJuerga.Repository.implementation
 
         public IEnumerable<Boleta> GetAll()
         {
-            var result = new List<Boleta>();
-            try
+            //LINQ
+            var boleta = context.Boletas
+                .Include(o => o.DetalleBoleta)
+                .ToList();
+
+            return boleta.Select(o => new Boleta
             {
-                result = context.Boletas.Include(c => c.Usuario).ToList();
-
-                result.Select(c => new Boleta
-                {
-                    Id = c.Id,
-                    UsuarioId = c.UsuarioId,
-                    Fecha = c.Fecha,
-                    Direccion = c.Direccion,
-                    Total = c.Total,
-                    DetalleBoleta = c.DetalleBoleta
-                });
-
-            }
-
-            catch (System.Exception)
-            {
-
-                throw;
-            }
-            return result;
+                Id = o.Id,
+                UsuarioId = o.UsuarioId,
+                Fecha = o.Fecha,
+                Direccion = o.Direccion,
+                Total = o.Total,
+                DetalleBoleta = o.DetalleBoleta                
+            });
         }
 
         public bool Save(Boleta entity)
@@ -83,23 +74,19 @@ namespace MrJuerga.Repository.implementation
                     {
                         ProductoId = item.ProductoId,
                         BoletaId = BoletaId,
-                        CantidadProducto = item.CantidadProducto,
-                        CantidadPaquete = item.CantidadPaquete,
-                        Subtotal = 0,
-                        PaqueteId = item.PaqueteId
-                    };         
-                    var result = new Producto();           
-                    result = context.Productos.Single(x => x.Id == detalle.ProductoId);
-                    var result2 = new Paquete();
-                    result2 = context.Paquetes.Single(x => x.Id == detalle.PaqueteId);                     
-                    detalle.Subtotal = (result.Precio * detalle.CantidadProducto + result2.Precio * detalle.CantidadPaquete);
-                    var result3 = new Boleta();           
+                        Cantidad = item.Cantidad,                       
+                        Subtotal = 0                      
+                    };
+                    var result = new Producto();
+                    result = context.Productos.Single(x => x.Id == detalle.ProductoId);                  
+                    detalle.Subtotal = (result.Precio * detalle.Cantidad);
+                    var result3 = new Boleta();
                     result3 = context.Boletas.Single(x => x.Id == boleta.Id);
-                    boleta.Total = result3.Total+ detalle.Subtotal;
+                    boleta.Total = result3.Total + detalle.Subtotal;
                     context.Boletas.Update(boleta);
                     context.DetalleBoletas.Add(detalle);
-                    
-                }                
+
+                }
                 context.SaveChanges();
             }
             catch (System.Exception ex)

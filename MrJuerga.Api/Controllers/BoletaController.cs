@@ -46,5 +46,13 @@ namespace MrJuerga.Api.Controllers
                 boletaService.Delete(id)
             );
         }
+
+        [HttpGet("{id}")]
+        public ActionResult Get(int id)
+        {
+            return Ok(
+                boletaService.Get(id)
+            );
+        }
     }
 }
