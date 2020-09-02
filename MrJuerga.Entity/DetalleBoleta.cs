@@ -10,8 +10,7 @@ namespace MrJuerga.Entity
         public int ProductoId { get; set; }
         public Producto Producto { get; set; }
         public int BoletaId { get; set; }
-        public Boleta Boleta{get;set;}
-
+        //public Boleta Boleta{get;set;}
         public int Cantidad {get;set;}     
         public float Subtotal { get; set; }       
     }

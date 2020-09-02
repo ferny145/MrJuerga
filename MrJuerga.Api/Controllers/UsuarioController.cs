@@ -25,6 +25,14 @@ namespace MrJuerga.Api.Controllers
             );
         }
 
+        [HttpGet("{id}")]
+        public ActionResult Get(int id)
+        {
+            return Ok(
+                usuarioService.Get(id)
+            );
+        }
+
         [HttpPost]
         public ActionResult Post([FromBody] Usuario usuario)
         {
