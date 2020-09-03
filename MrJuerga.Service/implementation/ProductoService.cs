@@ -17,6 +17,11 @@ namespace MrJuerga.Service.implementation
             return productoRepository.Delete(id);
         }
 
+        public IEnumerable<Producto> FetchProductobyName(string name)
+        {
+            return productoRepository.FetchProductobyName(name);
+        }
+
         public Producto Get(int id)
         {
             return productoRepository.Get(id);

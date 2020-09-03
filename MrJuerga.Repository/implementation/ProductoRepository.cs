@@ -106,5 +106,16 @@ namespace MrJuerga.Repository.implementation
             }
             return true;
         }
+        public IEnumerable<Producto> FetchProductobyName(string name)
+        {
+            var result = new List<Producto> ();
+            try {
+                result = context.Productos.Where(m=> m.Nombre.Contains(name)).ToList ();
+            } catch (System.Exception) {
+
+                throw;
+            }
+            return result;
+        }
     }
 }
