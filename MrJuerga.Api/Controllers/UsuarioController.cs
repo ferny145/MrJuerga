@@ -33,6 +33,14 @@ namespace MrJuerga.Api.Controllers
             );
         }
 
+        [HttpGet("fetchbyname/{name}")]
+        public ActionResult FetchUsuariobyName(string name)
+        {
+            return Ok(
+                usuarioService.FetchUsuariobyName(name)
+            );
+        }
+
         [HttpPost]
         public ActionResult Post([FromBody] Usuario usuario)
         {

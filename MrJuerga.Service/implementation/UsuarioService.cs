@@ -18,6 +18,11 @@ namespace MrJuerga.Service.implementation
             return usuarioRepository.Delete(id);
         }
 
+        public IEnumerable<Usuario> FetchUsuariobyName(string name)
+        {
+            return usuarioRepository.FetchUsuariobyName(name);
+        }
+
         public Usuario Get(int id)
         {
             return usuarioRepository.Get(id);

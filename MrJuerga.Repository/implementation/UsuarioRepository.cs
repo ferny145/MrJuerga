@@ -110,5 +110,17 @@ namespace MrJuerga.Repository.implementation
             }
             return true;
         }
+
+        public IEnumerable<Usuario> FetchUsuariobyName(string name)
+        {
+            var result = new List<Usuario> ();
+            try {
+                result = context.Usuarios.Where(m=> m.Nombre.Contains(name)).ToList ();
+            } catch (System.Exception) {
+
+                throw;
+            }
+            return result;
+        }
     }
 }
