@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MrJuerga.Repository.dbcontext;
 
 namespace MrJuerga.Repository.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200907184037_test")]
+    partial class test
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -96,19 +98,11 @@ namespace MrJuerga.Repository.Migrations
 
                     b.Property<string>("Correo");
 
-                    b.Property<string>("Dni");
-
-                    b.Property<string>("Estado");
-
                     b.Property<DateTime>("FechaNacimiento");
 
                     b.Property<int>("Genero");
 
                     b.Property<string>("Nombre");
-
-                    b.Property<string>("Password");
-
-                    b.Property<string>("Rol");
 
                     b.Property<string>("Telefono");
 
