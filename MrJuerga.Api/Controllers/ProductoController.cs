@@ -31,6 +31,14 @@ namespace MrJuerga.Api.Controllers
             );
         }
 
+        [HttpGet("fetchbycategory/{name}")]
+        public ActionResult FetchProductobyCategory(string name)
+        {
+            return Ok(
+                productoService.FetchProductobyCategory(name)
+            );
+        }
+
         [HttpPost]
         public ActionResult Post([FromBody] Producto producto)
         {

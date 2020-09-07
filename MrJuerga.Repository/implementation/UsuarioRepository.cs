@@ -74,11 +74,12 @@ namespace MrJuerga.Repository.implementation
                 usuariooriginal.Apellido = entity.Apellido;
                 usuariooriginal.Correo = entity.Correo;
                 usuariooriginal.Telefono = entity.Telefono;
-                usuariooriginal.FechaNacimiento = entity.FechaNacimiento;                
-               /* usuariooriginal.Password = entity.Password;
+                usuariooriginal.FechaNacimiento = entity.FechaNacimiento;
+                usuariooriginal.Genero = entity.Genero;                
+                usuariooriginal.Password = entity.Password;
                 usuariooriginal.Rol = entity.Rol;
                 usuariooriginal.Dni = entity.Dni;
-                usuariooriginal.Estado = entity.Estado;*/
+                usuariooriginal.Estado = entity.Estado;
 
 
                 context.Update(usuariooriginal);
@@ -99,7 +100,7 @@ namespace MrJuerga.Repository.implementation
                 var usuariooriginal = context.Usuarios.Single(
                          x => x.Id == id
                      );
-                //usuariooriginal.Estado = "Inactivo";
+                usuariooriginal.Estado = "Inactivo";
                 context.Update(usuariooriginal);
                 context.SaveChanges();
             }

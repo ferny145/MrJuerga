@@ -12,6 +12,7 @@ namespace MrJuerga.Entity
         public string Telefono {get;set;}
         public DateTime FechaNacimiento{get;set;}
         public int Genero {get; set;}
+                
          public string Password{get; set;}
         public string Rol {get;set;}
         public string Dni {get;set;}
