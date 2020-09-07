@@ -20,8 +20,7 @@ namespace MrJuerga.Repository.implementation
             var result = new Boleta();
             try
             {
-                result = context.Boletas.Include(o => o.DetalleBoleta).Single(u => u.Id == id); //.Single(x => x.Id == id).de //.Include(o => o.DetalleBoleta).ToList();
-                //result = context.Boletas.Include(c => c.Usuario).Include(d => d.DetalleBoleta).ToList();              
+                result = context.Boletas.Include(o => o.DetalleBoleta).Single(u => u.Id == id);            
             }
 
             catch (System.Exception)
@@ -52,7 +51,6 @@ namespace MrJuerga.Repository.implementation
 
         public bool Save(Boleta entity)
         {
-            bool flag = false;
             try
             {
                 //Objecto boleta
@@ -96,9 +94,8 @@ namespace MrJuerga.Repository.implementation
                         context.Boletas.Update(boleta);
                         context.DetalleBoletas.Add(detalle);
                     }
-                }
-                if(flag == false){
-                context.SaveChanges();}
+                }               
+                context.SaveChanges();
             }
             catch (System.Exception ex)
             {
@@ -119,16 +116,45 @@ namespace MrJuerga.Repository.implementation
                 boletaOriginal.UsuarioId = entity.UsuarioId;
                 boletaOriginal.Fecha = entity.Fecha;
                 boletaOriginal.Direccion = entity.Direccion;
-                boletaOriginal.Total = entity.Total;
-
-
+                boletaOriginal.Total =  0;              
                 context.Update(boletaOriginal);
                 context.SaveChanges();
+
+                var BoletaId = boletaOriginal.Id;
+
+                //Objeto DetalleBoleta
+                foreach (var item in entity.DetalleBoleta)
+                {
+                    var detboleta = new DetalleBoleta();
+                    detboleta = context.DetalleBoletas.Single(x => x.Id == item.Id);                    
+                        
+                        detboleta.ProductoId = item.ProductoId;
+                        detboleta.Cantidad = item.Cantidad;
+                        detboleta.Subtotal = 0;                        
+                    
+                    var result = new Producto();
+                    result = context.Productos.Single(x => x.Id == detboleta.ProductoId);
+                    if (result.Stock - detboleta.Cantidad < 0)
+                    {                        
+                        return false;
+                    }
+                    else
+                    {
+                        result.Stock = result.Stock - detboleta.Cantidad;
+                        detboleta.Subtotal = (result.Precio * detboleta.Cantidad);
+                        var result3 = new Boleta();
+                        result3 = context.Boletas.Single(x => x.Id == boletaOriginal.Id);
+                        boletaOriginal.Total = result3.Total + detboleta.Subtotal;
+                        context.Boletas.Update(boletaOriginal);
+                        context.DetalleBoletas.Update(detboleta);
+                    }
+                }
+                 context.SaveChanges();
             }
-            catch (System.Exception)
+            catch (System.Exception ex)
             {
 
-                return false;
+                Console.WriteLine(ex);
             }
             return true;
         }
