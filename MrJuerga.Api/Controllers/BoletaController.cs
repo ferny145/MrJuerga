@@ -23,6 +23,14 @@ namespace MrJuerga.Api.Controllers
             );
         }
 
+         [HttpGet("FetchTop5Customers")]
+        public ActionResult FetchTop5Customers()
+        {
+            return Ok(
+                boletaService.FetchTop5Customers()
+            );
+        }
+
         [HttpPost]
         public ActionResult Post([FromBody] Boleta boleta)
         {

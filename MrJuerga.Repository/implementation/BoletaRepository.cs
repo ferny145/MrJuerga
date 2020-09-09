@@ -20,7 +20,7 @@ namespace MrJuerga.Repository.implementation
             var result = new Boleta();
             try
             {
-                result = context.Boletas.Include(o => o.DetalleBoleta).Single(u => u.Id == id);            
+                result = context.Boletas.Include(o => o.DetalleBoleta).Single(u => u.Id == id);
             }
 
             catch (System.Exception)
@@ -94,7 +94,7 @@ namespace MrJuerga.Repository.implementation
                         context.Boletas.Update(boleta);
                         context.DetalleBoletas.Add(detalle);
                     }
-                }               
+                }
                 context.SaveChanges();
             }
             catch (System.Exception ex)
@@ -116,7 +116,7 @@ namespace MrJuerga.Repository.implementation
                 boletaOriginal.UsuarioId = entity.UsuarioId;
                 boletaOriginal.Fecha = entity.Fecha;
                 boletaOriginal.Direccion = entity.Direccion;
-                boletaOriginal.Total =  0;              
+                boletaOriginal.Total = 0;
                 context.Update(boletaOriginal);
                 context.SaveChanges();
 
@@ -126,16 +126,16 @@ namespace MrJuerga.Repository.implementation
                 foreach (var item in entity.DetalleBoleta)
                 {
                     var detboleta = new DetalleBoleta();
-                    detboleta = context.DetalleBoletas.Single(x => x.Id == item.Id);                    
-                        
-                        detboleta.ProductoId = item.ProductoId;
-                        detboleta.Cantidad = item.Cantidad;
-                        detboleta.Subtotal = 0;                        
-                    
+                    detboleta = context.DetalleBoletas.Single(x => x.Id == item.Id);
+
+                    detboleta.ProductoId = item.ProductoId;
+                    detboleta.Cantidad = item.Cantidad;
+                    detboleta.Subtotal = 0;
+
                     var result = new Producto();
                     result = context.Productos.Single(x => x.Id == detboleta.ProductoId);
                     if (result.Stock - detboleta.Cantidad < 0)
-                    {                        
+                    {
                         return false;
                     }
                     else
@@ -149,7 +149,7 @@ namespace MrJuerga.Repository.implementation
                         context.DetalleBoletas.Update(detboleta);
                     }
                 }
-                 context.SaveChanges();
+                context.SaveChanges();
             }
             catch (System.Exception ex)
             {
@@ -162,6 +162,38 @@ namespace MrJuerga.Repository.implementation
         public bool Delete(int id)
         {
             throw new System.NotImplementedException();
+        }
+
+        /*public IEnumerable<Boleta> FetchTop5Customers()
+        {
+
+            /* var boleta = context.Boletas                                
+            .Distinct()            
+            .Take (5)            
+            .Join(context.Usuarios,bol => bol.UsuarioId, usu => usu.Id,(bol,usu)=>new{
+                NameUser = usu.Nombre,
+                total = context.Boletas.Sum(b => b.Total)
+            })            
+            .GroupBy(b=> b.NameUser)
+            .ToList();
+           
+
+            var boleta = context.Boletas.FromSql("  select distinct  top 5 SUM(b.total) 'total', u.Nombre from [MrJuerga].[dbo].[Boletas] b join [MrJuerga].[dbo].Usuarios u on b.UsuarioId = u.Id group by u.Nombre order by total desc").ToList();
+
+            return boleta;
+        }*/
+
+        public IEnumerable<BoletaDTO> FetchTop5Customers()
+        {
+            var boleta = context.BoletaDTOs.FromSql("select distinct top 5 u.Id 'Id', u.Nombre,SUM(b.total) 'total' " +
+            "from Boletas b join Usuarios u on b.UsuarioId = u.Id group by u.Nombre, u.Id order by total desc").ToList();
+
+            return boleta.Select(o => new BoletaDTO
+            {
+                Id = o.Id,
+                Nombre = o.Nombre.ToString(),
+                total = o.total               
+            });
         }
     }
 }

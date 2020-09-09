@@ -17,6 +17,10 @@ namespace MrJuerga.Service.implementation
             return boletaRepository.Delete(id);
         }
 
+        public IEnumerable<BoletaDTO> FetchTop5Customers()
+        {
+            return boletaRepository.FetchTop5Customers();
+        }
         public Boleta Get(int id)
         {
             return boletaRepository.Get(id);
