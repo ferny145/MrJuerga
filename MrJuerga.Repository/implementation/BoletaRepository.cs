@@ -4,6 +4,8 @@ using MrJuerga.Entity;
 using MrJuerga.Repository.dbcontext;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Data.Common;
+using System.Data.SqlClient;
 
 namespace MrJuerga.Repository.implementation
 {
@@ -164,36 +166,27 @@ namespace MrJuerga.Repository.implementation
             throw new System.NotImplementedException();
         }
 
-        /*public IEnumerable<Boleta> FetchTop5Customers()
-        {
-
-            /* var boleta = context.Boletas                                
-            .Distinct()            
-            .Take (5)            
-            .Join(context.Usuarios,bol => bol.UsuarioId, usu => usu.Id,(bol,usu)=>new{
-                NameUser = usu.Nombre,
-                total = context.Boletas.Sum(b => b.Total)
-            })            
-            .GroupBy(b=> b.NameUser)
-            .ToList();
-           
-
-            var boleta = context.Boletas.FromSql("  select distinct  top 5 SUM(b.total) 'total', u.Nombre from [MrJuerga].[dbo].[Boletas] b join [MrJuerga].[dbo].Usuarios u on b.UsuarioId = u.Id group by u.Nombre order by total desc").ToList();
-
-            return boleta;
-        }*/
-
         public IEnumerable<BoletaDTO> FetchTop5Customers()
         {
             var boleta = context.BoletaDTOs.FromSql("select distinct top 5 u.Id 'Id', u.Nombre,SUM(b.total) 'total' " +
             "from Boletas b join Usuarios u on b.UsuarioId = u.Id group by u.Nombre, u.Id order by total desc").ToList();
 
-            return boleta.Select(o => new BoletaDTO
-            {
-                Id = o.Id,
-                Nombre = o.Nombre.ToString(),
-                total = o.total               
-            });
+            return boleta;
+        }
+        public IEnumerable<DetalleBoletaDTO> FetchTop5Products(string inicio, string fin)
+        {
+
+            DbParameter ini = new SqlParameter("Finicio", inicio);
+            DbParameter end = new SqlParameter("Ffin", fin);
+
+            var boleta = context.DetalleBoletaDTOs.FromSql("select top 5 p.Id, p.Nombre, sum(db.cantidad) 'cantidad' " +
+                "from Boletas b join DetalleBoletas db on b.Id = db.BoletaId " +
+                "join Productos p on p.Id = db.ProductoId " +
+                "where b.Fecha between @Finicio and @Ffin " +
+                "group by p.Nombre, p.Id " +
+                "order by cantidad desc",ini,end).ToList();
+
+            return boleta;
         }
     }
 }

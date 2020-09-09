@@ -21,6 +21,12 @@ namespace MrJuerga.Service.implementation
         {
             return boletaRepository.FetchTop5Customers();
         }
+
+        public IEnumerable<DetalleBoletaDTO> FetchTop5Products(string inicio, string fin)
+        {
+             return boletaRepository.FetchTop5Products(inicio,fin);
+        }
+
         public Boleta Get(int id)
         {
             return boletaRepository.Get(id);
