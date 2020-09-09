@@ -7,5 +7,6 @@ namespace MrJuerga.Service
     {
           IEnumerable<Producto> FetchProductobyName (string name);
           IEnumerable<Producto> FetchProductobyCategory (string name);
+          byte[] GetImage(string name);
     }
 }

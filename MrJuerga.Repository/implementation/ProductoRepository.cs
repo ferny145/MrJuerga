@@ -129,5 +129,13 @@ namespace MrJuerga.Repository.implementation
             }
             return result;
         }
+
+        public byte[] GetImage(string name)
+        {
+             string path = @"C:\Users\foi12\Music\MrJuerga\images\" + name + ".jpg";
+            byte[] b = System.IO.File.ReadAllBytes(path);
+
+            return b;
+        }
     }
 }

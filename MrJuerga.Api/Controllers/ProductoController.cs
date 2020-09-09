@@ -6,7 +6,7 @@ namespace MrJuerga.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductoController: ControllerBase
+    public class ProductoController : ControllerBase
     {
         private IProductoService productoService;
 
@@ -37,6 +37,13 @@ namespace MrJuerga.Api.Controllers
             return Ok(
                 productoService.FetchProductobyCategory(name)
             );
+        }
+
+        [HttpGet("GetImage/{name}")]
+        public ActionResult GetImage(string name)
+        {
+           
+            return Ok( productoService.GetImage(name));
         }
 
         [HttpPost]

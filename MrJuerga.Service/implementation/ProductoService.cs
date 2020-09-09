@@ -37,6 +37,11 @@ namespace MrJuerga.Service.implementation
            return productoRepository.GetAll();
         }
 
+        public byte[] GetImage(string name)
+        {
+            return productoRepository.GetImage(name);
+        }
+
         public bool Save(Producto entity)
         {
             return productoRepository.Save(entity);
