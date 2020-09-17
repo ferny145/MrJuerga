@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using MrJuerga.Entity;
 using MrJuerga.Repository;
-
+using OfficeOpenXml;
 
 namespace MrJuerga.Service.implementation
 {
@@ -31,6 +31,11 @@ namespace MrJuerga.Service.implementation
         public IEnumerable<Usuario> GetAll()
         {
            return usuarioRepository.GetAll();
+        }
+
+        public byte[] GetExcel()
+        {
+            return usuarioRepository.GetExcel();
         }
 
         public bool Save(Usuario entity)

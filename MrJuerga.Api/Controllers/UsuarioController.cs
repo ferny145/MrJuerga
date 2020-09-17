@@ -1,6 +1,12 @@
 using MrJuerga.Entity;
 using MrJuerga.Service;
 using Microsoft.AspNetCore.Mvc;
+using OfficeOpenXml.Style;
+using System.Drawing;
+using System.Collections.Generic;
+using static Microsoft.AspNetCore.Hosting.Internal.HostingApplication;
+using System.Threading.Tasks;
+using MrJuerga.Repository.dbcontext;
 
 namespace MrJuerga.Api.Controllers
 {
@@ -11,6 +17,9 @@ namespace MrJuerga.Api.Controllers
     public class UsuarioController: ControllerBase
     {
         private IUsuarioService usuarioService;
+
+        private ApplicationDbContext context;
+      
 
         public UsuarioController(IUsuarioService usuarioService)
         {
@@ -41,6 +50,14 @@ namespace MrJuerga.Api.Controllers
             );
         }
 
+        [HttpGet("GetExcel")]
+        public FileContentResult GetExcel()
+        {
+            byte[] datos = usuarioService.GetExcel();
+
+            return File(datos, "application/vnd.ms-excel", "usuarios.xlsx");
+        }
+
         [HttpPost]
         public ActionResult Post([FromBody] Usuario usuario)
         {
@@ -64,5 +81,5 @@ namespace MrJuerga.Api.Controllers
                 usuarioService.Delete(id)
             );
         }
-    }
+            }
 }
