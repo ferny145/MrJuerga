@@ -72,7 +72,7 @@ namespace MrJuerga.Repository.implementation
         }
 
         public bool Update(Usuario entity)
-        {
+        { /*
             try
             {
                 var usuariooriginal = context.Usuarios.Single(
@@ -98,8 +98,8 @@ namespace MrJuerga.Repository.implementation
             {
 
                 return false;
-            }
-            return true;
+            }*/
+           throw new System.NotImplementedException();
         }
 
         public bool Delete(int id)
@@ -307,6 +307,46 @@ namespace MrJuerga.Repository.implementation
         public Usuario GetById(int id)
         {
            return context.Usuarios.Find(id);
+        }
+
+        public Usuario updatejwt(UsuarioDTO user)
+        {
+            var usuariooriginal = context.Usuarios.Single(
+                    x => x.Id == user.Id
+                );
+
+            if (usuariooriginal == null)
+                throw new AppException("User not found");
+
+            if (user.Correo != usuariooriginal.Correo)
+            {
+                // username has changed so check if the new username is already taken
+                if (context.Usuarios.Any(x => x.Correo == user.Correo))
+                    throw new AppException("Username " + user.Correo + " is already taken");
+            }
+
+            // update user properties
+            usuariooriginal.Nombre = user.Nombre;
+            usuariooriginal.Apellido = user.Apellido;
+            usuariooriginal.Correo = user.Correo;
+            usuariooriginal.Telefono = user.Telefono;
+            usuariooriginal.FechaNacimiento = user.FechaNacimiento;
+            usuariooriginal.Genero = user.Genero;   
+            usuariooriginal.Dni = user.Dni;
+
+            // update password if it was entered
+            if (!string.IsNullOrWhiteSpace(user.Password))
+            {
+                byte[] passwordHash, passwordSalt;
+                CreatePasswordHash(user.Password, out passwordHash, out passwordSalt);
+
+                usuariooriginal.PasswordHash = passwordHash;
+                usuariooriginal.PasswordSalt = passwordSalt;
+            }
+
+            context.Usuarios.Update(usuariooriginal);
+            context.SaveChanges();
+            return usuariooriginal;
         }
     }
 }

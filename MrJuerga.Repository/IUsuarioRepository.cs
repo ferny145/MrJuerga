@@ -10,7 +10,7 @@ namespace MrJuerga.Repository
           byte[]  GetExcel();
            Usuario Authenticate(string username, string password);
            Usuario Register(UsuarioDTO user);
-
            Usuario GetById(int id);
+           Usuario updatejwt(UsuarioDTO user);
     }
 }

@@ -123,10 +123,10 @@ namespace MrJuerga.Api.Controllers
         }
 
         [HttpPut]
-        public ActionResult Put([FromBody] Usuario usuario)
+        public ActionResult Put([FromBody] UsuarioDTO usuario)
         {
             return Ok(
-                usuarioService.Update(usuario)
+                usuarioService.updatejwt(usuario)
             );
         }
 

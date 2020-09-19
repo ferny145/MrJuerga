@@ -62,5 +62,10 @@ namespace MrJuerga.Service.implementation
         {
             return usuarioRepository.Update(entity);
         }
+
+        public Usuario updatejwt(UsuarioDTO user)
+        {
+            return usuarioRepository.updatejwt(user);
+        }
     }
 }
