@@ -3,14 +3,14 @@ using System.Drawing;
 using System.Linq;
 using MrJuerga.Entity;
 using MrJuerga.Repository.dbcontext;
+
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.IO;
-
-
+using MrJuerga.Repository.Helper;
 
 namespace MrJuerga.Repository.implementation
 {
@@ -57,7 +57,7 @@ namespace MrJuerga.Repository.implementation
 
         public bool Save(Usuario entity)
         {
-            try
+            /*try
             {
                 context.Add(entity);
                 context.SaveChanges();
@@ -67,7 +67,8 @@ namespace MrJuerga.Repository.implementation
 
                 return false;
             }
-            return true;
+            return true;*/
+            throw new System.NotImplementedException();
         }
 
         public bool Update(Usuario entity)
@@ -85,7 +86,6 @@ namespace MrJuerga.Repository.implementation
                 usuariooriginal.Telefono = entity.Telefono;
                 usuariooriginal.FechaNacimiento = entity.FechaNacimiento;
                 usuariooriginal.Genero = entity.Genero;
-                usuariooriginal.Password = entity.Password;
                 usuariooriginal.Rol = entity.Rol;
                 usuariooriginal.Dni = entity.Dni;
                 usuariooriginal.Estado = entity.Estado;
@@ -213,6 +213,100 @@ namespace MrJuerga.Repository.implementation
             }
             
             return result;
+        }
+
+        public Usuario Authenticate(string username, string password)
+        {
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+                return null;
+
+            var user = context.Usuarios.SingleOrDefault(x => x.Correo == username);
+
+            // check if username exists
+            if (user == null)
+                return null;
+
+            // check if password is correct
+            if (!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
+                return null;
+
+            // authentication successful
+            return user;
+        }
+
+        // private helper methods
+
+        private static void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
+        {
+            if (password == null) throw new ArgumentNullException("password");
+            if (string.IsNullOrWhiteSpace(password)) throw new ArgumentException("Value cannot be empty or whitespace only string.", "password");
+
+            using (var hmac = new System.Security.Cryptography.HMACSHA512())
+            {
+                passwordSalt = hmac.Key;
+                passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+            }
+        }
+
+        private static bool VerifyPasswordHash(string password, byte[] storedHash, byte[] storedSalt)
+        {
+            if (password == null) throw new ArgumentNullException("password");
+            if (string.IsNullOrWhiteSpace(password)) throw new ArgumentException("Value cannot be empty or whitespace only string.", "password");
+            if (storedHash.Length != 64) throw new ArgumentException("Invalid length of password hash (64 bytes expected).", "passwordHash");
+            if (storedSalt.Length != 128) throw new ArgumentException("Invalid length of password salt (128 bytes expected).", "passwordHash");
+
+            using (var hmac = new System.Security.Cryptography.HMACSHA512(storedSalt))
+            {
+                var computedHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+                for (int i = 0; i < computedHash.Length; i++)
+                {
+                    if (computedHash[i] != storedHash[i]) return false;
+                }
+            }
+
+            return true;
+        }
+
+        public Usuario Register(UsuarioDTO user)
+        {
+            Usuario nuevousuario = new Usuario();
+
+            nuevousuario.Id = user.Id;
+            nuevousuario.Nombre = user.Nombre;
+            nuevousuario.Apellido = user.Apellido;
+            nuevousuario.Correo = user.Correo;
+            nuevousuario.Telefono = user.Telefono;
+            nuevousuario.FechaNacimiento = user.FechaNacimiento;
+            nuevousuario.Genero = user.Genero;
+            nuevousuario.Rol = "general";
+            nuevousuario.Dni = user.Dni;
+            nuevousuario.Estado = "activo";
+            nuevousuario.PasswordHash = null;
+            nuevousuario.PasswordSalt = null;
+
+
+            // validation
+            if (string.IsNullOrWhiteSpace(user.Password))
+                throw new AppException("Password is required");
+
+            if (context.Usuarios.Any(x => x.Correo == user.Correo))
+                throw new AppException("Username \"" + user.Correo + "\" is already taken");
+
+            byte[] passwordHash, passwordSalt;
+            CreatePasswordHash(user.Password, out passwordHash, out passwordSalt);
+
+            nuevousuario.PasswordHash = passwordHash;
+            nuevousuario.PasswordSalt = passwordSalt;
+
+            context.Usuarios.Add(nuevousuario);
+            context.SaveChanges();
+
+            return nuevousuario;
+        }
+
+        public Usuario GetById(int id)
+        {
+           return context.Usuarios.Find(id);
         }
     }
 }

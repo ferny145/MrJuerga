@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MrJuerga.Entity
 {
-    public class Usuario
+    public class UsuarioDTO
     {
         public int Id { get; set; }
         public string Nombre { get; set; }
@@ -11,12 +11,9 @@ namespace MrJuerga.Entity
         public string Correo { get; set; }
         public string Telefono { get; set; }
         public DateTime FechaNacimiento { get; set; }
-        public int Genero { get; set; }
-        public string Rol { get; set; }
+        public int Genero { get; set; }       
         public string Dni { get; set; }
-        public string Estado { get; set; }
-        public byte[] PasswordHash { get; set; }
-        public byte[] PasswordSalt { get; set; }
+        public string Password { get; set; }
 
     }
 }

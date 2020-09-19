@@ -16,6 +16,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using System.Text;
+using MrJuerga.Repository.Helper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 namespace MrJuerga.Api
 {
@@ -46,6 +50,32 @@ namespace MrJuerga.Api
             services.AddTransient<IBoletaService, BoletaService> ();           
 
 
+            // configure strongly typed settings objects
+            var appSettingsSection = Configuration.GetSection("AppSettings");
+            services.Configure<AppSettings>(appSettingsSection);
+
+            // configure jwt authentication
+            var appSettings = appSettingsSection.Get<AppSettings>();
+            var key = Encoding.ASCII.GetBytes(appSettings.Secret);
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(x =>
+            {               
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
+            });
+
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
              services.AddCors (options => {
@@ -69,6 +99,7 @@ namespace MrJuerga.Api
 
             app.UseCors ("Todos");
             //app.UseHttpsRedirection();
+            app.UseAuthentication();
             app.UseMvc ();
         }
     }

@@ -12,7 +12,12 @@ namespace MrJuerga.Service.implementation
         {
             this.usuarioRepository=usuarioRepository;
         }
-        
+
+        public Usuario Authenticate(string username, string password)
+        {
+           return this.usuarioRepository.Authenticate(username,password);
+        }
+
         public bool Delete(int id)
         {
             return usuarioRepository.Delete(id);
@@ -33,9 +38,19 @@ namespace MrJuerga.Service.implementation
            return usuarioRepository.GetAll();
         }
 
+        public Usuario GetById(int id)
+        {
+            return usuarioRepository.GetById(id);
+        }
+
         public byte[] GetExcel()
         {
             return usuarioRepository.GetExcel();
+        }
+
+        public Usuario Register(UsuarioDTO user)
+        {
+            return usuarioRepository.Register(user);
         }
 
         public bool Save(Usuario entity)
