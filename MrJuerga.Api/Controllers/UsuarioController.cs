@@ -122,6 +122,22 @@ namespace MrJuerga.Api.Controllers
             }
         }
 
+        [HttpPut("updatepsw")]
+        public ActionResult updatepsw([FromBody] UsuarioDTO usuario)
+        {
+            try
+            {
+                // save 
+                usuarioService.updatepsw(usuario);
+                return Ok();
+            }
+            catch (AppException ex)
+            {
+                // return error message if there was an exception
+                return BadRequest(new { message = ex.Message });
+            }
+        }
+
         [HttpPut]
         public ActionResult Put([FromBody] UsuarioDTO usuario)
         {

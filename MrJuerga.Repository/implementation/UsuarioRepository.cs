@@ -99,7 +99,7 @@ namespace MrJuerga.Repository.implementation
 
                 return false;
             }*/
-           throw new System.NotImplementedException();
+            throw new System.NotImplementedException();
         }
 
         public bool Delete(int id)
@@ -176,8 +176,8 @@ namespace MrJuerga.Repository.implementation
                     var year = item.FechaNacimiento.Year.ToString();
                     var month = item.FechaNacimiento.Month.ToString();
                     var day = item.FechaNacimiento.Day.ToString();
-                    var fecha = day + "/"+ month+ "/" + year;
-                    
+                    var fecha = day + "/" + month + "/" + year;
+
 
                     woorksheet.Cells[row, 1].Value = item.Nombre;
                     woorksheet.Cells[row, 2].Value = item.Apellido;
@@ -211,7 +211,7 @@ namespace MrJuerga.Repository.implementation
                 woorksheet.Cells[woorksheet.Dimension.Address].AutoFitColumns();
                 result = package.GetAsByteArray();
             }
-            
+
             return result;
         }
 
@@ -306,7 +306,7 @@ namespace MrJuerga.Repository.implementation
 
         public Usuario GetById(int id)
         {
-           return context.Usuarios.Find(id);
+            return context.Usuarios.Find(id);
         }
 
         public Usuario updatejwt(UsuarioDTO user)
@@ -331,7 +331,7 @@ namespace MrJuerga.Repository.implementation
             usuariooriginal.Correo = user.Correo;
             usuariooriginal.Telefono = user.Telefono;
             usuariooriginal.FechaNacimiento = user.FechaNacimiento;
-            usuariooriginal.Genero = user.Genero;   
+            usuariooriginal.Genero = user.Genero;
             usuariooriginal.Dni = user.Dni;
 
             // update password if it was entered
@@ -343,6 +343,32 @@ namespace MrJuerga.Repository.implementation
                 usuariooriginal.PasswordHash = passwordHash;
                 usuariooriginal.PasswordSalt = passwordSalt;
             }
+
+            context.Usuarios.Update(usuariooriginal);
+            context.SaveChanges();
+            return usuariooriginal;
+        }
+
+        public Usuario updatepsw(UsuarioDTO user)
+        {
+            if (string.IsNullOrEmpty(user.Correo) || string.IsNullOrEmpty(user.Password) || string.IsNullOrEmpty(user.NewPassword))
+                throw new AppException("insert a password, new password or an email");
+
+            var usuariooriginal = context.Usuarios.Single(
+                    x => x.Id == user.Id
+                );
+            if (usuariooriginal == null)
+                throw new AppException("User not found");
+
+            // check if password is correct
+            if (!VerifyPasswordHash(user.Password, usuariooriginal.PasswordHash, usuariooriginal.PasswordSalt))
+                throw new AppException("password incorrect");
+
+            byte[] passwordHash, passwordSalt;
+            CreatePasswordHash(user.NewPassword, out passwordHash, out passwordSalt);
+
+            usuariooriginal.PasswordHash = passwordHash;
+            usuariooriginal.PasswordSalt = passwordSalt;
 
             context.Usuarios.Update(usuariooriginal);
             context.SaveChanges();
