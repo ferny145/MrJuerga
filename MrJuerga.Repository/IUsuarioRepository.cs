@@ -1,6 +1,7 @@
 using MrJuerga.Entity;
 using OfficeOpenXml;
 using System.Collections.Generic;
+using System.Text;
 
 namespace MrJuerga.Repository
 {
@@ -13,5 +14,6 @@ namespace MrJuerga.Repository
            Usuario GetById(int id);
            Usuario updatejwt(UsuarioDTO user);
            Usuario updatepsw(UsuarioDTO user);
+         
     }
 }

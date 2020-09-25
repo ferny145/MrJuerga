@@ -6,6 +6,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.4"/>
     <PackageReference Include="EpplusExcel" Version="1.0.0"/>
     <PackageReference Include="EPPlus" Version="4.5.2.1"/>
+    <PackageReference Include="DinkToPdf" Version="1.0.8"/>
   </ItemGroup>
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>

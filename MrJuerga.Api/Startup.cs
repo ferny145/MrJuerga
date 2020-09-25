@@ -20,6 +20,8 @@ using System.Text;
 using MrJuerga.Repository.Helper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using DinkToPdf.Contracts;
+using DinkToPdf;
 
 namespace MrJuerga.Api
 {
@@ -48,6 +50,8 @@ namespace MrJuerga.Api
             
             services.AddTransient<IBoletaRepository, BoletaRepository>();
             services.AddTransient<IBoletaService, BoletaService> ();           
+
+            services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
 
 
             // configure strongly typed settings objects

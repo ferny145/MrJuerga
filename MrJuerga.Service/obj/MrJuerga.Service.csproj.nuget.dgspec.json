@@ -101,6 +101,10 @@
       "frameworks": {
         "netstandard2.0": {
           "dependencies": {
+            "DinkToPdf": {
+              "target": "Package",
+              "version": "[1.0.8, )"
+            },
             "EPPlus": {
               "target": "Package",
               "version": "[4.5.2.1, )"

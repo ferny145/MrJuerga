@@ -16,7 +16,7 @@ namespace MrJuerga.Service.implementation
         public Usuario Authenticate(string username, string password)
         {
            return this.usuarioRepository.Authenticate(username,password);
-        }
+        }       
 
         public bool Delete(int id)
         {

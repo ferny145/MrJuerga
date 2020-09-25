@@ -48,6 +48,10 @@
       "frameworks": {
         "netcoreapp2.2": {
           "dependencies": {
+            "DinkToPdf": {
+              "target": "Package",
+              "version": "[1.0.8, )"
+            },
             "Microsoft.AspNetCore.App": {
               "suppressParent": "All",
               "target": "Package",
@@ -171,6 +175,10 @@
       "frameworks": {
         "netstandard2.0": {
           "dependencies": {
+            "DinkToPdf": {
+              "target": "Package",
+              "version": "[1.0.8, )"
+            },
             "EPPlus": {
               "target": "Package",
               "version": "[4.5.2.1, )"

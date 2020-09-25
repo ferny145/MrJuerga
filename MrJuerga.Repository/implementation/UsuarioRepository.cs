@@ -11,13 +11,14 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using System.IO;
 using MrJuerga.Repository.Helper;
+using System.Text;
 
 namespace MrJuerga.Repository.implementation
 {
     public class UsuarioRepository : IUsuarioRepository
     {
         private ApplicationDbContext context;
-
+    
         public UsuarioRepository(ApplicationDbContext context)
         {
             this.context = context;
@@ -45,6 +46,7 @@ namespace MrJuerga.Repository.implementation
             try
             {
                 result = context.Usuarios.ToList();
+                Console.WriteLine("fernando:" + Directory.GetCurrentDirectory());
             }
 
             catch (System.Exception)
@@ -57,48 +59,11 @@ namespace MrJuerga.Repository.implementation
 
         public bool Save(Usuario entity)
         {
-            /*try
-            {
-                context.Add(entity);
-                context.SaveChanges();
-            }
-            catch (System.Exception)
-            {
-
-                return false;
-            }
-            return true;*/
             throw new System.NotImplementedException();
         }
 
         public bool Update(Usuario entity)
-        { /*
-            try
-            {
-                var usuariooriginal = context.Usuarios.Single(
-                    x => x.Id == entity.Id
-                );
-
-                usuariooriginal.Id = entity.Id;
-                usuariooriginal.Nombre = entity.Nombre;
-                usuariooriginal.Apellido = entity.Apellido;
-                usuariooriginal.Correo = entity.Correo;
-                usuariooriginal.Telefono = entity.Telefono;
-                usuariooriginal.FechaNacimiento = entity.FechaNacimiento;
-                usuariooriginal.Genero = entity.Genero;
-                usuariooriginal.Rol = entity.Rol;
-                usuariooriginal.Dni = entity.Dni;
-                usuariooriginal.Estado = entity.Estado;
-
-
-                context.Update(usuariooriginal);
-                context.SaveChanges();
-            }
-            catch (System.Exception)
-            {
-
-                return false;
-            }*/
+        {
             throw new System.NotImplementedException();
         }
 
@@ -373,6 +338,6 @@ namespace MrJuerga.Repository.implementation
             context.Usuarios.Update(usuariooriginal);
             context.SaveChanges();
             return usuariooriginal;
-        }
+        }       
     }
 }

@@ -10,6 +10,9 @@ using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using System;
 using Microsoft.Extensions.Options;
+using DinkToPdf;
+using System.IO;
+using DinkToPdf.Contracts;
 
 namespace MrJuerga.Api.Controllers
 {
@@ -22,12 +25,14 @@ namespace MrJuerga.Api.Controllers
         private IUsuarioService usuarioService;
 
         private ApplicationDbContext context;
+        private IConverter _converter;
 
-        private readonly AppSettings _appSettings;  
-        public UsuarioController(IUsuarioService usuarioService,  IOptions<AppSettings> appSettings)
+        private readonly AppSettings _appSettings;
+        public UsuarioController(IUsuarioService usuarioService, IOptions<AppSettings> appSettings, IConverter converter)
         {
             this.usuarioService = usuarioService;
             _appSettings = appSettings.Value;
+            _converter = converter;
         }
 
         [HttpGet]
@@ -37,7 +42,7 @@ namespace MrJuerga.Api.Controllers
                 usuarioService.GetAll()
             );
         }
-        
+
         [HttpGet("{id}")]
         public ActionResult Get(int id)
         {
@@ -54,6 +59,7 @@ namespace MrJuerga.Api.Controllers
             );
         }
 
+        [AllowAnonymous]
         [HttpGet("GetExcel")]
         public FileContentResult GetExcel()
         {
@@ -68,6 +74,38 @@ namespace MrJuerga.Api.Controllers
             return Ok(
                 usuarioService.Save(usuario)
             );
+        }
+
+        [AllowAnonymous]
+        [HttpGet("getpdf")]
+        public IActionResult CreatePDF()
+        {
+            var usuarios = usuarioService.GetAll();
+
+            var globalSettings = new GlobalSettings
+            {
+                ColorMode = ColorMode.Color,
+                Orientation = Orientation.Portrait,
+                PaperSize = PaperKind.A4,
+                Margins = new MarginSettings { Top = 10 },
+                DocumentTitle = "PDF Report",
+
+            };
+            var objectSettings = new ObjectSettings
+            {
+                PagesCount = true,
+                HtmlContent = TemplateGenerator.GetHTMLString(usuarios),
+                WebSettings = { DefaultEncoding = "utf-8", UserStyleSheet = Path.Combine(Directory.GetCurrentDirectory(), "assets", "styles.css") },
+                HeaderSettings = { FontName = "Arial", FontSize = 9, Right = "Page [page] of [toPage]", Line = true },
+                FooterSettings = { FontName = "Arial", FontSize = 9, Line = true, Center = "Report Footer" }
+            };
+            var pdf = new HtmlToPdfDocument()
+            {
+                GlobalSettings = globalSettings,
+                Objects = { objectSettings }
+            };
+            var file = _converter.Convert(pdf);
+            return File(file, "application/pdf", "EmployeeReport.pdf");
         }
 
         [AllowAnonymous]
