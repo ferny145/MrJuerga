@@ -13,6 +13,7 @@ using Microsoft.Extensions.Options;
 using DinkToPdf;
 using System.IO;
 using DinkToPdf.Contracts;
+using System.Collections.Generic;
 
 namespace MrJuerga.Api.Controllers
 {
@@ -59,13 +60,23 @@ namespace MrJuerga.Api.Controllers
             );
         }
 
-        [AllowAnonymous]
+
         [HttpGet("GetExcel")]
         public FileContentResult GetExcel()
         {
             byte[] datos = usuarioService.GetExcel();
 
             return File(datos, "application/vnd.ms-excel", "usuarios.xlsx");
+        }
+
+
+        [AllowAnonymous]
+        [HttpPost("GetUsuarios")]
+        public ActionResult GetUsuarios()
+        {
+           return Ok(
+                usuarioService.loadUsers()
+            );
         }
 
         [HttpPost]
@@ -76,7 +87,7 @@ namespace MrJuerga.Api.Controllers
             );
         }
 
-        [AllowAnonymous]
+
         [HttpGet("getpdf")]
         public IActionResult CreatePDF()
         {

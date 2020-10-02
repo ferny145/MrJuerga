@@ -132,7 +132,7 @@ namespace MrJuerga.Repository.implementation
 
         public byte[] GetImage(string name)
         {
-             string path = @"C:\Users\foi12\Music\MrJuerga\images\" + name + ".jpg";
+            string path = @"C:\Users\foi12\Music\MrJuerga\images\" + name + ".jpg";
             byte[] b = System.IO.File.ReadAllBytes(path);
 
             return b;

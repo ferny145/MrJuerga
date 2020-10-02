@@ -13,6 +13,7 @@ namespace MrJuerga.Service
         Usuario GetById(int id);
         Usuario updatejwt(UsuarioDTO user);
         Usuario updatepsw(UsuarioDTO user);
+        bool loadUsers();
         
     }
 }

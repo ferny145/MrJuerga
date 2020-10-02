@@ -18,7 +18,7 @@ namespace MrJuerga.Repository.implementation
     public class UsuarioRepository : IUsuarioRepository
     {
         private ApplicationDbContext context;
-    
+
         public UsuarioRepository(ApplicationDbContext context)
         {
             this.context = context;
@@ -338,6 +338,54 @@ namespace MrJuerga.Repository.implementation
             context.Usuarios.Update(usuariooriginal);
             context.SaveChanges();
             return usuariooriginal;
-        }       
+        }
+
+        public bool loadUsers()
+        {
+            string path = @"C:\Users\foi12\Music\MrJuerga\images\texto" + ".txt";
+            string text = System.IO.File.ReadAllText(path);
+            string[] lines = System.IO.File.ReadAllLines(path);
+            Usuario nuevousuario = new Usuario();
+
+            for (int i = 0; i < lines.Length; i++)
+            {
+                string[] words = lines[i].Split(',');
+
+
+                UsuarioDTO usuario  = new UsuarioDTO();
+
+                usuario.Nombre = words[0];
+                usuario.Apellido = words[1];
+                usuario.Correo = words[2];
+                usuario.Telefono = words[3];
+                usuario.FechaNacimiento = Convert.ToDateTime(words[4]);
+                usuario.Genero = Convert.ToInt32(words[5]);
+                usuario.Dni = words[6];
+                usuario.Password = words[7];
+
+                Register(usuario);
+
+                /*nuevousuario.Nombre = words[0];
+                nuevousuario.Apellido = words[1];
+                nuevousuario.Correo = words[2];
+                nuevousuario.Telefono = words[3];
+                nuevousuario.FechaNacimiento = Convert.ToDateTime(words[4]);
+                nuevousuario.Genero = Convert.ToInt32(words[5]);
+                nuevousuario.Rol = "general";
+                nuevousuario.Dni = words[6];
+                nuevousuario.Estado = "activo";
+                nuevousuario.PasswordHash = null;
+                nuevousuario.PasswordSalt = null;
+
+                byte[] passwordHash, passwordSalt;
+                CreatePasswordHash(words[7], out passwordHash, out passwordSalt);
+
+                nuevousuario.PasswordHash = passwordHash;
+                nuevousuario.PasswordSalt = passwordSalt;
+                context.Usuarios.Add(nuevousuario);
+                context.SaveChanges();*/
+            }           
+            return true;
+        }
     }
 }
