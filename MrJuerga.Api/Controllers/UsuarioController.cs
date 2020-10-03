@@ -70,12 +70,21 @@ namespace MrJuerga.Api.Controllers
         }
 
 
-        [AllowAnonymous]
+        
         [HttpPost("LoadUsers/{name}")]
         public ActionResult LoadUsers(string name)
         {
            return Ok(
                 usuarioService.loadUsers(name)
+            );
+        }
+
+        
+        [HttpPost("loadUsersExcel/{name}")]
+        public ActionResult loadUsersExcel(string name)
+        {
+           return Ok(
+                usuarioService.loadUsersExcel(name)
             );
         }
 

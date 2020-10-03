@@ -14,6 +14,7 @@ namespace MrJuerga.Service
         Usuario updatejwt(UsuarioDTO user);
         Usuario updatepsw(UsuarioDTO user);
         bool loadUsers(string name);
+        bool loadUsersExcel(string name);
         
     }
 }

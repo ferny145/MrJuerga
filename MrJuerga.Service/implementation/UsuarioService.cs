@@ -53,6 +53,11 @@ namespace MrJuerga.Service.implementation
             return usuarioRepository.loadUsers(name);
         }
 
+        public bool loadUsersExcel(string name)
+        {
+             return usuarioRepository.loadUsersExcel(name);
+        }
+
         public Usuario Register(UsuarioDTO user)
         {
             return usuarioRepository.Register(user);

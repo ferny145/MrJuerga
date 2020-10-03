@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.IO;
 using MrJuerga.Repository.Helper;
 using System.Text;
+using ExcelDataReader;
 
 namespace MrJuerga.Repository.implementation
 {
@@ -45,7 +46,7 @@ namespace MrJuerga.Repository.implementation
             var result = new List<Usuario>();
             try
             {
-                result = context.Usuarios.ToList();               
+                result = context.Usuarios.ToList();
             }
 
             catch (System.Exception)
@@ -341,18 +342,13 @@ namespace MrJuerga.Repository.implementation
 
         public bool loadUsers(string name)
         {
-            string path = @"C:\Users\foi12\Music\MrJuerga\files\"+ name + ".txt";
-            string text = System.IO.File.ReadAllText(path);
+            string path = @"C:\Users\foi12\Music\MrJuerga\files\" + name;
             string[] lines = System.IO.File.ReadAllLines(path);
-            Usuario nuevousuario = new Usuario();
-
             for (int i = 0; i < lines.Length; i++)
             {
                 string[] words = lines[i].Split(',');
 
-
-                UsuarioDTO usuario  = new UsuarioDTO();
-
+                UsuarioDTO usuario = new UsuarioDTO();
                 usuario.Nombre = words[0];
                 usuario.Apellido = words[1];
                 usuario.Correo = words[2];
@@ -362,9 +358,48 @@ namespace MrJuerga.Repository.implementation
                 usuario.Dni = words[6];
                 usuario.Password = words[7];
 
-                Register(usuario);               
-            }           
+                Register(usuario);
+            }
             return true;
         }
+
+        public bool loadUsersExcel(string name)
+        {           
+            var fileName = @"C:\Users\foi12\Music\MrJuerga\files\" + name + ".xlsx";
+            bool flag = false;
+            // For .net core, the next line requires the NuGet package, 
+            // System.Text.Encoding.CodePages
+            System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
+            using (var stream = System.IO.File.Open(fileName, FileMode.Open, FileAccess.Read))
+            {
+                using (var reader = ExcelReaderFactory.CreateReader(stream))
+                {
+
+                    while (reader.Read()) //Each row of the file
+                    {
+                        if(flag){
+                        UsuarioDTO usuario = new UsuarioDTO();
+
+                        usuario.Nombre = reader.GetValue(0).ToString();
+                        usuario.Apellido = reader.GetValue(1).ToString();
+                        usuario.Correo = reader.GetValue(2).ToString();
+                        usuario.Telefono = reader.GetValue(3).ToString();
+                        usuario.FechaNacimiento = Convert.ToDateTime(reader.GetValue(4).ToString());
+                        usuario.Genero = Convert.ToInt32(reader.GetValue(5).ToString());
+                        usuario.Dni = reader.GetValue(6).ToString();
+                        usuario.Password = reader.GetValue(7).ToString();
+
+                        Register(usuario);
+                        }
+                        else{
+                            flag = true;
+                        }
+                    };
+                }
+            }
+            return true;
+        }
+
     }
 }
+
