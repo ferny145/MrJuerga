@@ -15,7 +15,7 @@ namespace MrJuerga.Repository
            Usuario updatejwt(UsuarioDTO user);
            Usuario updatepsw(UsuarioDTO user);
 
-           bool loadUsers();
+           bool loadUsers(string name);
          
     }
 }

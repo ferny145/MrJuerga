@@ -71,11 +71,11 @@ namespace MrJuerga.Api.Controllers
 
 
         [AllowAnonymous]
-        [HttpPost("GetUsuarios")]
-        public ActionResult GetUsuarios()
+        [HttpPost("LoadUsers/{name}")]
+        public ActionResult LoadUsers(string name)
         {
            return Ok(
-                usuarioService.loadUsers()
+                usuarioService.loadUsers(name)
             );
         }
 

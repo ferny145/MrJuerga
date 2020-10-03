@@ -105,6 +105,9 @@ namespace MrJuerga.Api
             //app.UseHttpsRedirection();
             app.UseAuthentication();
             app.UseMvc ();
+            app.UseStaticFiles();
+            app.UseHttpsRedirection();
+            
         }
     }
 }

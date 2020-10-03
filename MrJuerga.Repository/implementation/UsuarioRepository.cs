@@ -45,8 +45,7 @@ namespace MrJuerga.Repository.implementation
             var result = new List<Usuario>();
             try
             {
-                result = context.Usuarios.ToList();
-                Console.WriteLine("fernando:" + Directory.GetCurrentDirectory());
+                result = context.Usuarios.ToList();               
             }
 
             catch (System.Exception)
@@ -340,9 +339,9 @@ namespace MrJuerga.Repository.implementation
             return usuariooriginal;
         }
 
-        public bool loadUsers()
+        public bool loadUsers(string name)
         {
-            string path = @"C:\Users\foi12\Music\MrJuerga\images\texto" + ".txt";
+            string path = @"C:\Users\foi12\Music\MrJuerga\files\"+ name + ".txt";
             string text = System.IO.File.ReadAllText(path);
             string[] lines = System.IO.File.ReadAllLines(path);
             Usuario nuevousuario = new Usuario();
@@ -363,27 +362,7 @@ namespace MrJuerga.Repository.implementation
                 usuario.Dni = words[6];
                 usuario.Password = words[7];
 
-                Register(usuario);
-
-                /*nuevousuario.Nombre = words[0];
-                nuevousuario.Apellido = words[1];
-                nuevousuario.Correo = words[2];
-                nuevousuario.Telefono = words[3];
-                nuevousuario.FechaNacimiento = Convert.ToDateTime(words[4]);
-                nuevousuario.Genero = Convert.ToInt32(words[5]);
-                nuevousuario.Rol = "general";
-                nuevousuario.Dni = words[6];
-                nuevousuario.Estado = "activo";
-                nuevousuario.PasswordHash = null;
-                nuevousuario.PasswordSalt = null;
-
-                byte[] passwordHash, passwordSalt;
-                CreatePasswordHash(words[7], out passwordHash, out passwordSalt);
-
-                nuevousuario.PasswordHash = passwordHash;
-                nuevousuario.PasswordSalt = passwordSalt;
-                context.Usuarios.Add(nuevousuario);
-                context.SaveChanges();*/
+                Register(usuario);               
             }           
             return true;
         }
