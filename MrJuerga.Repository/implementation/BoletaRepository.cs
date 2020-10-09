@@ -11,9 +11,9 @@ namespace MrJuerga.Repository.implementation
 {
     public class BoletaRepository : IBoletaRepository
     {
-        private ApplicationDbContext context;
+        private ApplicationDbContextDTO context;
 
-        public BoletaRepository(ApplicationDbContext context)
+        public BoletaRepository(ApplicationDbContextDTO context)
         {
             this.context = context;
         }

@@ -15,5 +15,6 @@ namespace MrJuerga.Entity
         public string Direccion { get; set; }
         public float Total { get; set; }
         public IEnumerable<DetalleBoleta> DetalleBoleta { get; set; }
+        public string Estado {get;set;}
     }
 }

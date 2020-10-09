@@ -18,9 +18,9 @@ namespace MrJuerga.Repository.implementation
 {
     public class UsuarioRepository : IUsuarioRepository
     {
-        private ApplicationDbContext context;
+        private ApplicationDbContextDTO context;
 
-        public UsuarioRepository(ApplicationDbContext context)
+        public UsuarioRepository(ApplicationDbContextDTO context)
         {
             this.context = context;
         }
