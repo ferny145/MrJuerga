@@ -47,6 +47,7 @@ namespace MrJuerga.Repository.implementation
                 Fecha = o.Fecha,
                 Direccion = o.Direccion,
                 Total = o.Total,
+                Estado = o.Estado,
                 DetalleBoleta = o.DetalleBoleta
             });
         }
