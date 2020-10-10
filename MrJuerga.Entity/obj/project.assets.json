@@ -2376,11 +2376,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\foi12\\3D Objects\\MrJuerga\\MrJuerga.Entity\\MrJuerga.Entity.csproj",
+      "projectUniqueName": "C:\\Users\\foi12\\Music\\MrJuerga\\MrJuerga.Entity\\MrJuerga.Entity.csproj",
       "projectName": "MrJuerga.Entity",
-      "projectPath": "C:\\Users\\foi12\\3D Objects\\MrJuerga\\MrJuerga.Entity\\MrJuerga.Entity.csproj",
+      "projectPath": "C:\\Users\\foi12\\Music\\MrJuerga\\MrJuerga.Entity\\MrJuerga.Entity.csproj",
       "packagesPath": "C:\\Users\\foi12\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\foi12\\3D Objects\\MrJuerga\\MrJuerga.Entity\\obj\\",
+      "outputPath": "C:\\Users\\foi12\\Music\\MrJuerga\\MrJuerga.Entity\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

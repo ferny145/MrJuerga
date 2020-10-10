@@ -11,9 +11,9 @@ namespace MrJuerga.Repository.implementation
 {
     public class BoletaRepository : IBoletaRepository
     {
-        private ApplicationDbContextDTO context;
+        private ApplicationDbContext context;
 
-        public BoletaRepository(ApplicationDbContextDTO context)
+        public BoletaRepository(ApplicationDbContext context)
         {
             this.context = context;
         }
@@ -61,7 +61,8 @@ namespace MrJuerga.Repository.implementation
                     UsuarioId = entity.UsuarioId,
                     Fecha = entity.Fecha,
                     Direccion = entity.Direccion,
-                    Total = 0
+                    Total = 0,
+                    Estado = "Registrado"
                 };
 
                 context.Boletas.Add(boleta);
@@ -119,6 +120,7 @@ namespace MrJuerga.Repository.implementation
                 boletaOriginal.Fecha = entity.Fecha;
                 boletaOriginal.Direccion = entity.Direccion;
                 boletaOriginal.Total = 0;
+                boletaOriginal.Estado = entity.Estado;
                 context.Update(boletaOriginal);
                 context.SaveChanges();
 
@@ -187,6 +189,18 @@ namespace MrJuerga.Repository.implementation
                 "order by cantidad desc",ini,end).ToList();
 
             return boleta;
+        }
+
+        public IEnumerable<Boleta> FetchByStatus(string estado)
+        {
+            var result = new List<Boleta> ();
+            try {
+                result = context.Boletas.Where(m=> m.Estado.Contains(estado)).ToList();
+            } catch (System.Exception) {
+
+                throw;
+            }
+            return result;
         }
     }
 }

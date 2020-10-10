@@ -39,6 +39,14 @@ namespace MrJuerga.Api.Controllers
             );
         }
 
+        [HttpGet("FetchByStatus")]
+        public ActionResult FetchByStatus(string estado)
+        {
+            return Ok(
+                boletaService.FetchByStatus(estado)
+            );
+        }
+
         [HttpPost]
         public ActionResult Post([FromBody] Boleta boleta)
         {

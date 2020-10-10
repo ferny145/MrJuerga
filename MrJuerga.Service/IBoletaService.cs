@@ -7,5 +7,6 @@ namespace MrJuerga.Service
     {
         IEnumerable<BoletaDTO> FetchTop5Customers();
         IEnumerable<DetalleBoletaDTO> FetchTop5Products(string inicio, string fin);
+        IEnumerable<Boleta> FetchByStatus(string estado);
     }
 }

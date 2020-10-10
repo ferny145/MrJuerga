@@ -7,9 +7,9 @@ namespace MrJuerga.Repository.implementation
 {
     public class ProductoRepository : IProductoRepository
     {
-        private ApplicationDbContextDTO context;
+        private ApplicationDbContext context;
 
-        public ProductoRepository(ApplicationDbContextDTO context)
+        public ProductoRepository(ApplicationDbContext context)
         {
             this.context = context;
         }

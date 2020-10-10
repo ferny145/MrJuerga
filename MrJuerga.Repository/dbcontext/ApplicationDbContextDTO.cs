@@ -11,5 +11,9 @@ namespace MrJuerga.Repository.dbcontext
         public DbSet<DetalleBoleta> DetalleBoletas { get; set; }
         public DbSet<BoletaDTO> BoletaDTOs { get; set; }
         public DbSet<DetalleBoletaDTO> DetalleBoletaDTOs { get; set; }
+        public ApplicationDbContextDTO(DbContextOptions<ApplicationDbContextDTO> options) : base(options)
+        {
+
+        }
     }
 }
