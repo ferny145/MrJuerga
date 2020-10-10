@@ -12,6 +12,12 @@ namespace MrJuerga.Repository.Migrations
 
             migrationBuilder.DropTable(
                 name: "DetalleBoletaDTOs");
+            
+            migrationBuilder.AddColumn<string>(
+                name: "Estado",
+                table: "Boletas",
+                nullable: false,
+                defaultValue: 0);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -43,6 +49,10 @@ namespace MrJuerga.Repository.Migrations
                 {
                     table.PrimaryKey("PK_DetalleBoletaDTOs", x => x.Id);
                 });
+
+             migrationBuilder.DropColumn(
+                name: "Estado",
+                table: "Boletas");
         }
     }
 }

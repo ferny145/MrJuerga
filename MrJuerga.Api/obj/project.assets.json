@@ -12793,11 +12793,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\foi12\\Music\\MrJuerga\\MrJuerga.Api\\MrJuerga.Api.csproj",
+      "projectUniqueName": "C:\\Users\\foi12\\3D Objects\\MrJuerga\\MrJuerga.Api\\MrJuerga.Api.csproj",
       "projectName": "MrJuerga.Api",
-      "projectPath": "C:\\Users\\foi12\\Music\\MrJuerga\\MrJuerga.Api\\MrJuerga.Api.csproj",
+      "projectPath": "C:\\Users\\foi12\\3D Objects\\MrJuerga\\MrJuerga.Api\\MrJuerga.Api.csproj",
       "packagesPath": "C:\\Users\\foi12\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\foi12\\Music\\MrJuerga\\MrJuerga.Api\\obj\\",
+      "outputPath": "C:\\Users\\foi12\\3D Objects\\MrJuerga\\MrJuerga.Api\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -12816,11 +12816,11 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
-            "C:\\Users\\foi12\\Music\\MrJuerga\\MrJuerga.Entity\\MrJuerga.Entity.csproj": {
-              "projectPath": "C:\\Users\\foi12\\Music\\MrJuerga\\MrJuerga.Entity\\MrJuerga.Entity.csproj"
+            "C:\\Users\\foi12\\3D Objects\\MrJuerga\\MrJuerga.Entity\\MrJuerga.Entity.csproj": {
+              "projectPath": "C:\\Users\\foi12\\3D Objects\\MrJuerga\\MrJuerga.Entity\\MrJuerga.Entity.csproj"
             },
-            "C:\\Users\\foi12\\Music\\MrJuerga\\MrJuerga.Service\\MrJuerga.Service.csproj": {
-              "projectPath": "C:\\Users\\foi12\\Music\\MrJuerga\\MrJuerga.Service\\MrJuerga.Service.csproj"
+            "C:\\Users\\foi12\\3D Objects\\MrJuerga\\MrJuerga.Service\\MrJuerga.Service.csproj": {
+              "projectPath": "C:\\Users\\foi12\\3D Objects\\MrJuerga\\MrJuerga.Service\\MrJuerga.Service.csproj"
             }
           }
         }
