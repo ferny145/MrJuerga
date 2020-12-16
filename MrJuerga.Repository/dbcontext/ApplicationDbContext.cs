@@ -6,6 +6,7 @@ namespace MrJuerga.Repository.dbcontext
     public class ApplicationDbContext : DbContext
     {
         public DbSet<Producto> Productos { get; set; }
+        public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Boleta> Boletas { get; set; }
         public DbSet<DetalleBoleta> DetalleBoletas { get; set; }

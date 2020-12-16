@@ -42,6 +42,34 @@ namespace MrJuerga.Repository.Migrations
                     b.ToTable("Boletas");
                 });
 
+            modelBuilder.Entity("MrJuerga.Entity.BoletaDTO", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Nombre");
+
+                    b.Property<double>("total");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("BoletaDTOs");
+                });
+
+            modelBuilder.Entity("MrJuerga.Entity.Categoria", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Nombre");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Categoria");
+                });
+
             modelBuilder.Entity("MrJuerga.Entity.DetalleBoleta", b =>
                 {
                     b.Property<int>("Id")
@@ -65,13 +93,28 @@ namespace MrJuerga.Repository.Migrations
                     b.ToTable("DetalleBoletas");
                 });
 
+            modelBuilder.Entity("MrJuerga.Entity.DetalleBoletaDTO", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Nombre");
+
+                    b.Property<int>("cantidad");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DetalleBoletaDTOs");
+                });
+
             modelBuilder.Entity("MrJuerga.Entity.Producto", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Categoria");
+                    b.Property<int>("CategoriaId");
 
                     b.Property<string>("Descripcion");
 
@@ -84,6 +127,8 @@ namespace MrJuerga.Repository.Migrations
                     b.Property<int>("Stock");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CategoriaId");
 
                     b.ToTable("Productos");
                 });
@@ -139,6 +184,14 @@ namespace MrJuerga.Repository.Migrations
                     b.HasOne("MrJuerga.Entity.Producto", "Producto")
                         .WithMany()
                         .HasForeignKey("ProductoId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("MrJuerga.Entity.Producto", b =>
+                {
+                    b.HasOne("MrJuerga.Entity.Categoria", "Categoria")
+                        .WithMany()
+                        .HasForeignKey("CategoriaId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

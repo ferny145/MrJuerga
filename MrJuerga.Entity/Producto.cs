@@ -9,7 +9,8 @@ namespace MrJuerga.Entity
         public string Nombre { get; set; }        
         public string Descripcion { get; set; }
         public float Precio { get; set; }
-        public string Categoria { get; set; }
+        public int CategoriaId { get; set; }        
+        public Categoria Categoria { get; set; }
         public string Estado { get; set; }
         public int Stock {get; set; }
     }

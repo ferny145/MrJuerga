@@ -31,11 +31,11 @@ namespace MrJuerga.Api.Controllers
             );
         }
 
-        [HttpGet("fetchbycategory/{name}")]
-        public ActionResult FetchProductobyCategory(string name)
+        [HttpGet("fetchbycategory/{id}")]
+        public ActionResult FetchProductobyCategory(int id)
         {
             return Ok(
-                productoService.FetchProductobyCategory(name)
+                productoService.FetchProductobyCategory(id)
             );
         }
 

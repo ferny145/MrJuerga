@@ -73,7 +73,7 @@ namespace MrJuerga.Repository.implementation
                 productoriginal.Nombre = entity.Nombre;
                 productoriginal.Descripcion = entity.Descripcion;
                 productoriginal.Precio = entity.Precio;
-                productoriginal.Categoria = entity.Categoria;
+                productoriginal.CategoriaId = entity.CategoriaId;
                 productoriginal.Estado = entity.Estado;
                 productoriginal.Stock = entity.Stock;
 
@@ -118,11 +118,11 @@ namespace MrJuerga.Repository.implementation
             return result;
         }
 
-        public IEnumerable<Producto> FetchProductobyCategory(string name)
+        public IEnumerable<Producto> FetchProductobyCategory(int id)
         {
             var result = new List<Producto> ();
             try {
-                result = context.Productos.Where(m=> m.Categoria.Contains(name)).ToList ();
+                result = context.Productos.Where(m=> m.CategoriaId == id).ToList ();
             } catch (System.Exception) {
 
                 throw;

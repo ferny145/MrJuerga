@@ -16,3 +16,12 @@ C:\Users\foi12\3D Objects\MrJuerga\MrJuerga.Entity\obj\Debug\netstandard2.0\MrJu
 C:\Users\foi12\3D Objects\MrJuerga\MrJuerga.Entity\obj\Debug\netstandard2.0\MrJuerga.Entity.AssemblyInfo.cs
 C:\Users\foi12\3D Objects\MrJuerga\MrJuerga.Entity\obj\Debug\netstandard2.0\MrJuerga.Entity.dll
 C:\Users\foi12\3D Objects\MrJuerga\MrJuerga.Entity\obj\Debug\netstandard2.0\MrJuerga.Entity.pdb
+C:\Users\PC\Music\Mr Juerga\backend\MrJuerga\MrJuerga.Entity\bin\Debug\netstandard2.0\MrJuerga.Entity.deps.json
+C:\Users\PC\Music\Mr Juerga\backend\MrJuerga\MrJuerga.Entity\bin\Debug\netstandard2.0\MrJuerga.Entity.dll
+C:\Users\PC\Music\Mr Juerga\backend\MrJuerga\MrJuerga.Entity\bin\Debug\netstandard2.0\MrJuerga.Entity.pdb
+C:\Users\PC\Music\Mr Juerga\backend\MrJuerga\MrJuerga.Entity\obj\Debug\netstandard2.0\MrJuerga.Entity.csprojAssemblyReference.cache
+C:\Users\PC\Music\Mr Juerga\backend\MrJuerga\MrJuerga.Entity\obj\Debug\netstandard2.0\MrJuerga.Entity.csproj.CoreCompileInputs.cache
+C:\Users\PC\Music\Mr Juerga\backend\MrJuerga\MrJuerga.Entity\obj\Debug\netstandard2.0\MrJuerga.Entity.AssemblyInfoInputs.cache
+C:\Users\PC\Music\Mr Juerga\backend\MrJuerga\MrJuerga.Entity\obj\Debug\netstandard2.0\MrJuerga.Entity.AssemblyInfo.cs
+C:\Users\PC\Music\Mr Juerga\backend\MrJuerga\MrJuerga.Entity\obj\Debug\netstandard2.0\MrJuerga.Entity.dll
+C:\Users\PC\Music\Mr Juerga\backend\MrJuerga\MrJuerga.Entity\obj\Debug\netstandard2.0\MrJuerga.Entity.pdb

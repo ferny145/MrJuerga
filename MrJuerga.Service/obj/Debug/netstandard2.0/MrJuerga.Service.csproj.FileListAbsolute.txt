@@ -26,3 +26,17 @@ C:\Users\foi12\3D Objects\MrJuerga\MrJuerga.Service\obj\Debug\netstandard2.0\MrJ
 C:\Users\foi12\3D Objects\MrJuerga\MrJuerga.Service\obj\Debug\netstandard2.0\MrJuerga.Service.csproj.CopyComplete
 C:\Users\foi12\3D Objects\MrJuerga\MrJuerga.Service\obj\Debug\netstandard2.0\MrJuerga.Service.dll
 C:\Users\foi12\3D Objects\MrJuerga\MrJuerga.Service\obj\Debug\netstandard2.0\MrJuerga.Service.pdb
+C:\Users\PC\Music\Mr Juerga\backend\MrJuerga\MrJuerga.Service\bin\Debug\netstandard2.0\MrJuerga.Service.deps.json
+C:\Users\PC\Music\Mr Juerga\backend\MrJuerga\MrJuerga.Service\bin\Debug\netstandard2.0\MrJuerga.Service.dll
+C:\Users\PC\Music\Mr Juerga\backend\MrJuerga\MrJuerga.Service\bin\Debug\netstandard2.0\MrJuerga.Service.pdb
+C:\Users\PC\Music\Mr Juerga\backend\MrJuerga\MrJuerga.Service\bin\Debug\netstandard2.0\MrJuerga.Entity.dll
+C:\Users\PC\Music\Mr Juerga\backend\MrJuerga\MrJuerga.Service\bin\Debug\netstandard2.0\MrJuerga.Repository.dll
+C:\Users\PC\Music\Mr Juerga\backend\MrJuerga\MrJuerga.Service\bin\Debug\netstandard2.0\MrJuerga.Repository.pdb
+C:\Users\PC\Music\Mr Juerga\backend\MrJuerga\MrJuerga.Service\bin\Debug\netstandard2.0\MrJuerga.Entity.pdb
+C:\Users\PC\Music\Mr Juerga\backend\MrJuerga\MrJuerga.Service\obj\Debug\netstandard2.0\MrJuerga.Service.csprojAssemblyReference.cache
+C:\Users\PC\Music\Mr Juerga\backend\MrJuerga\MrJuerga.Service\obj\Debug\netstandard2.0\MrJuerga.Service.csproj.CoreCompileInputs.cache
+C:\Users\PC\Music\Mr Juerga\backend\MrJuerga\MrJuerga.Service\obj\Debug\netstandard2.0\MrJuerga.Service.AssemblyInfoInputs.cache
+C:\Users\PC\Music\Mr Juerga\backend\MrJuerga\MrJuerga.Service\obj\Debug\netstandard2.0\MrJuerga.Service.AssemblyInfo.cs
+C:\Users\PC\Music\Mr Juerga\backend\MrJuerga\MrJuerga.Service\obj\Debug\netstandard2.0\MrJuerga.Service.csproj.CopyComplete
+C:\Users\PC\Music\Mr Juerga\backend\MrJuerga\MrJuerga.Service\obj\Debug\netstandard2.0\MrJuerga.Service.dll
+C:\Users\PC\Music\Mr Juerga\backend\MrJuerga\MrJuerga.Service\obj\Debug\netstandard2.0\MrJuerga.Service.pdb

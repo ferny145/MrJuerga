@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\foi12\\Music\\MrJuerga\\MrJuerga.Entity\\MrJuerga.Entity.csproj": {}
+    "C:\\Users\\PC\\Music\\Mr Juerga\\backend\\MrJuerga\\MrJuerga.Entity\\MrJuerga.Entity.csproj": {}
   },
   "projects": {
-    "C:\\Users\\foi12\\Music\\MrJuerga\\MrJuerga.Entity\\MrJuerga.Entity.csproj": {
+    "C:\\Users\\PC\\Music\\Mr Juerga\\backend\\MrJuerga\\MrJuerga.Entity\\MrJuerga.Entity.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\foi12\\Music\\MrJuerga\\MrJuerga.Entity\\MrJuerga.Entity.csproj",
+        "projectUniqueName": "C:\\Users\\PC\\Music\\Mr Juerga\\backend\\MrJuerga\\MrJuerga.Entity\\MrJuerga.Entity.csproj",
         "projectName": "MrJuerga.Entity",
-        "projectPath": "C:\\Users\\foi12\\Music\\MrJuerga\\MrJuerga.Entity\\MrJuerga.Entity.csproj",
-        "packagesPath": "C:\\Users\\foi12\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\foi12\\Music\\MrJuerga\\MrJuerga.Entity\\obj\\",
+        "projectPath": "C:\\Users\\PC\\Music\\Mr Juerga\\backend\\MrJuerga\\MrJuerga.Entity\\MrJuerga.Entity.csproj",
+        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\PC\\Music\\Mr Juerga\\backend\\MrJuerga\\MrJuerga.Entity\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\foi12\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
