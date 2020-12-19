@@ -1,23 +1,23 @@
-INSERT INTO Categoria(Nombre)
+INSERT INTO Categorias(Nombre)
 VALUES ('Whisky');
 
-INSERT INTO Categoria(Nombre)
+INSERT INTO Categorias(Nombre)
 VALUES ('Ron');
 
-INSERT INTO Categoria(Nombre)
+INSERT INTO Categorias(Nombre)
 VALUES ('Cerveza');
 
-INSERT INTO Categoria(Nombre)
+INSERT INTO Categorias(Nombre)
 VALUES ('Vino');
 
-INSERT INTO Categoria(Nombre)
+INSERT INTO Categorias(Nombre)
 VALUES ('Vodka');
 
-INSERT INTO Categoria(Nombre)
+INSERT INTO Categorias(Nombre)
 VALUES ('Tequila');
 
-INSERT INTO Categoria(Nombre)
+INSERT INTO Categorias(Nombre)
 VALUES ('Piqueos');
 
-INSERT INTO Categoria(Nombre)
+INSERT INTO Categorias(Nombre)
 VALUES ('Otros');

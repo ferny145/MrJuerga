@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MrJuerga.Repository.Migrations
 {
-    public partial class categoria : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -23,7 +23,7 @@ namespace MrJuerga.Repository.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Categoria",
+                name: "Categorias",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -32,7 +32,7 @@ namespace MrJuerga.Repository.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Categoria", x => x.Id);
+                    table.PrimaryKey("PK_Categorias", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -89,9 +89,9 @@ namespace MrJuerga.Repository.Migrations
                 {
                     table.PrimaryKey("PK_Productos", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Productos_Categoria_CategoriaId",
+                        name: "FK_Productos_Categorias_CategoriaId",
                         column: x => x.CategoriaId,
-                        principalTable: "Categoria",
+                        principalTable: "Categorias",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -189,7 +189,7 @@ namespace MrJuerga.Repository.Migrations
                 name: "Usuarios");
 
             migrationBuilder.DropTable(
-                name: "Categoria");
+                name: "Categorias");
         }
     }
 }

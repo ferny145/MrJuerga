@@ -67,7 +67,7 @@ namespace MrJuerga.Repository.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categoria");
+                    b.ToTable("Categorias");
                 });
 
             modelBuilder.Entity("MrJuerga.Entity.DetalleBoleta", b =>

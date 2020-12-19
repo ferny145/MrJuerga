@@ -10,8 +10,8 @@ using MrJuerga.Repository.dbcontext;
 namespace MrJuerga.Repository.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201216000143_categoria")]
-    partial class categoria
+    [Migration("20201219000001_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -69,7 +69,7 @@ namespace MrJuerga.Repository.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categoria");
+                    b.ToTable("Categorias");
                 });
 
             modelBuilder.Entity("MrJuerga.Entity.DetalleBoleta", b =>
