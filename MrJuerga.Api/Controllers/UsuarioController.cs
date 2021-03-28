@@ -36,6 +36,7 @@ namespace MrJuerga.Api.Controllers
             _converter = converter;
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public ActionResult Get()
         {
