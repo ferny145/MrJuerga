@@ -365,7 +365,7 @@ namespace MrJuerga.Repository.implementation
 
         public bool loadUsersExcel(string name)
         {           
-            var fileName = @"C:\Users\foi12\Music\MrJuerga\files\" + name + ".xlsx";
+            var fileName = @"C:\Users\foi12\Music\MrJuerga\files\" + name;
             bool flag = false;
             // For .net core, the next line requires the NuGet package, 
             // System.Text.Encoding.CodePages
